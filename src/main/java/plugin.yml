@@ -8,3 +8,6 @@ commands:
   setup:
     description: Setup
     permission: lobby.setup
+  build:
+    description: Build
+    permission: lobby.build

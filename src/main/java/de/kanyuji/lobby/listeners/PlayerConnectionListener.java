@@ -14,7 +14,6 @@ public class PlayerConnectionListener implements Listener {
 
     @EventHandler
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
-        event.setJoinMessage(null);
         Player player = event.getPlayer();
         player.getInventory().clear();
         player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
