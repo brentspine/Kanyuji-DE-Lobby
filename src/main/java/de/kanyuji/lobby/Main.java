@@ -1,6 +1,7 @@
 package de.kanyuji.lobby;
 
 import de.kanyuji.lobby.commands.SetupCommand;
+import de.kanyuji.lobby.listeners.BlockedListeners;
 import de.kanyuji.lobby.listeners.PlayerConnectionListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,6 +28,7 @@ public class Main extends JavaPlugin {
     public void register(PluginManager pluginManager) {
         getCommand("setup").setExecutor(new SetupCommand());
         pluginManager.registerEvents(new PlayerConnectionListener(), this);
+        pluginManager.registerEvents(new BlockedListeners(), this);
     }
 
 
