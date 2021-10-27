@@ -50,6 +50,7 @@
             <artifactId>guice</artifactId>
             <version>5.0.1</version>
         </dependency>
+        <!-- https://www.spigotmc.org/threads/tutorial-spigot-plugins-dependency-injection.295218/ -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
