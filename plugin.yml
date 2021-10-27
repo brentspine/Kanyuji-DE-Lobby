@@ -1,0 +1,10 @@
+name: Lobby
+version: 1.0.0
+author: LvkasDev & Brentspine for Kanyuji.de
+api-version: 1.16
+main: de.kanyuji.lobby.Main
+
+commands:
+  setup:
+    description: Setup
+    permission: lobby.setup
