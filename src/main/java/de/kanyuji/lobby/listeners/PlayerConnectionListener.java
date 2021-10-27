@@ -16,9 +16,8 @@ public class PlayerConnectionListener implements Listener {
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         event.setJoinMessage(null);
         Player player = event.getPlayer();
-        player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
         player.getInventory().clear();
-        player.teleport(new LocationUtil(Main.getInstance(), "loc.spawn").getLocation());
+        player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
         player.getInventory().setItem(0, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§b§lTeleporter").build());
         player.getInventory().setItem(1, new ItemBuilder(Material.RED_DYE).setDisplayName("§c§lSpieler Versteckt").build());
         player.getInventory().setItem(4, new ItemBuilder(Material.LEGACY_FIREWORK_CHARGE).setDisplayName("§7Gadget").build());
