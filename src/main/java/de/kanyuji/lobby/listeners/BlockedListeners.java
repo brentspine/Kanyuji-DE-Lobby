@@ -18,6 +18,7 @@ public class BlockedListeners implements Listener {
         }
     }
 
+    @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if(!event.getPlayer().isOp()) {
             event.setCancelled(true);
