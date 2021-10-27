@@ -1,7 +1,10 @@
 package de.kanyuji.lobby;
 
+import de.kanyuji.lobby.listeners.PlayerConnectionListener;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -13,10 +16,15 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         instance = this;
+        register(Bukkit.getPluginManager());
     }
 
     public static Main getInstance() {
         return instance;
+    }
+
+    public void register(PluginManager pluginManager) {
+        pluginManager.registerEvents(new PlayerConnectionListener(), this);
     }
 
 

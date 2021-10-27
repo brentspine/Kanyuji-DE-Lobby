@@ -16,7 +16,7 @@ public class PlayerConnectionListener implements Listener {
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         event.setJoinMessage(null);
         Player player = event.getPlayer();
-        player.teleport(Main.spawnLocation);
+        player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
         player.getInventory().clear();
         player.teleport(new LocationUtil(Main.getInstance(), "loc.spawn").getLocation());
         player.getInventory().setItem(0, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§b§lTeleporter").build());
