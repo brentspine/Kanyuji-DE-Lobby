@@ -1,5 +1,6 @@
 package de.kanyuji.lobby;
 
+import de.kanyuji.lobby.commands.BuildCommand;
 import de.kanyuji.lobby.commands.SetupCommand;
 import de.kanyuji.lobby.listeners.BlockedListeners;
 import de.kanyuji.lobby.listeners.PlayerConnectionListener;
@@ -27,6 +28,7 @@ public class Main extends JavaPlugin {
 
     public void register(PluginManager pluginManager) {
         getCommand("setup").setExecutor(new SetupCommand());
+        getCommand("build").setExecutor(new BuildCommand());
         pluginManager.registerEvents(new PlayerConnectionListener(), this);
         pluginManager.registerEvents(new BlockedListeners(), this);
     }
