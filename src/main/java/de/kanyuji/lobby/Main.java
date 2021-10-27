@@ -8,7 +8,6 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
     public static final String PREFIX = "§b§lLobby §8» §7";
-    public static Location spawnLocation;
 
     @Override
     public void onEnable() {
@@ -20,10 +19,6 @@ public class Main extends JavaPlugin {
         return instance;
     }
 
-
-    public static void setSpawnLocation(Location spawnLocation) {
-        Main.spawnLocation = spawnLocation;
-    }
 
     //todo SetupCommand
 

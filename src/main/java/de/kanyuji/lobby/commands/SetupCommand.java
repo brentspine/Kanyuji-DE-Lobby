@@ -1,6 +1,7 @@
 package de.kanyuji.lobby.commands;
 
 import de.kanyuji.lobby.Main;
+import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,11 +24,8 @@ public class SetupCommand implements CommandExecutor {
             return true;
         }
         if (args[0].equalsIgnoreCase("spawn")) {
-            if(player.getLocation().subtract(0, 1, 0).getBlock().getType() == Material.AIR) {
-                player.sendMessage(Main.PREFIX + "Der Spawn darf nicht in der Luft liegen!");
-                return true;
-            }
-            Main.setSpawnLocation(player.getLocation());
+            player.sendMessage(Main.PREFIX + "Der Spawn wurde gesetzt!");
+            new LocationUtil(Main.getInstance(), player.getLocation(), "spawn").saveLocation();
             return true;
         }
         return true;
