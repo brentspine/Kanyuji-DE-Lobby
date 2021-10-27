@@ -1,10 +1,8 @@
 package de.kanyuji.lobby.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -49,10 +47,11 @@ public class ItemBuilder {
         is.removeEnchantment(ench);
         return this;
     }
-    public ItemBuilder setSkullOwner(String owner){
+    public ItemBuilder setSkullOwner(UUID owner){
         try{
             SkullMeta im = (SkullMeta)is.getItemMeta();
-            im.setOwner(owner);
+            //im.setOwner(owner);
+            im.setOwningPlayer(Bukkit.getOfflinePlayer(owner));
             is.setItemMeta(im);
         }catch(ClassCastException expected){}
         return this;
