@@ -10,12 +10,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class PLayerConnectionListener implements Listener {
+public class PlayerConnectionListener implements Listener {
 
     @EventHandler
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         event.setJoinMessage(null);
         Player player = event.getPlayer();
+        player.teleport(Main.spawnLocation);
         player.getInventory().clear();
         player.teleport(new LocationUtil(Main.getInstance(), "loc.spawn").getLocation());
         player.getInventory().setItem(0, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§b§lTeleporter").build());
