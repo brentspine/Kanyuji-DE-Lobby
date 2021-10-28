@@ -3,6 +3,8 @@ package de.kanyuji.lobby;
 import de.kanyuji.lobby.commands.SetupCommand;
 import de.kanyuji.lobby.listeners.BlockedListeners;
 import de.kanyuji.lobby.listeners.PlayerConnectionListener;
+import de.kanyuji.lobby.listeners.ScoreboardListener;
+import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,9 +29,12 @@ public class Main extends JavaPlugin {
         getCommand("setup").setExecutor(new SetupCommand());
         pluginManager.registerEvents(new PlayerConnectionListener(), this);
         pluginManager.registerEvents(new BlockedListeners(), this);
+        pluginManager.registerEvents(new ScoreboardListener(), this);
+        getServer().getScheduler().runTaskTimer(this, () -> {
+            for (FastBoard board : ScoreboardListener.boards.values()) {
+                ScoreboardListener.updateBoard(board);
+            }
+        }, 0, 20);
     }
-
-
-    //todo SetupCommand
 
 }

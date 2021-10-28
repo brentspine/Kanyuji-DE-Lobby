@@ -19,21 +19,21 @@ public class ScoreboardListener implements Listener {
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         FastBoard board = new FastBoard(player);
-        board.updateTitle("§b§lLobby");
+        board.updateTitle("      §b§lLobby      ");
         boards.put(player.getUniqueId(), board);
     }
 
     @EventHandler
     public void handlePlayerQuitEvent(PlayerQuitEvent e) {
         Player player = e.getPlayer();
-
         FastBoard board = boards.remove(player.getUniqueId());
-
         if (board != null) {
             board.delete();
         }
     }
-    //todo update method
+    public static void updateBoard(FastBoard board) {
+        board.updateLines("", "§f§lRang", "§7Todo", "", "§6§lCoins", "§7Todo", "§e§lSpielzeit", "§7Todo", "");
+    }
 
 
 }
