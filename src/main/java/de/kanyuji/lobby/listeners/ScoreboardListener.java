@@ -35,14 +35,15 @@ public class ScoreboardListener implements Listener {
     public static void updateBoard(FastBoard board) {
         board.updateLines(
                 "",
-                "§f§lRang",
+                "§fRang",
                 "§7Todo", "",
-                "§6§lCoins",
+                "§6Coins",
+                "§7Todo", "",
+                "§eSpielzeit",
+                "§7Todo", "" +
+                "§aUhrzeit",
                 "§7Todo",
-                "",
-                "§e§lSpielzeit",
-                "§7Todo",
-                "                       ");
+                "             ");
     }
 
 
