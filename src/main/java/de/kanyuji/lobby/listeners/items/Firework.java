@@ -40,7 +40,7 @@ public class Firework implements Listener {
             if(!event.getView().getTitle().equalsIgnoreCase("§b§lTeleporter")) return;
             event.setCancelled(true);
             switch (event.getCurrentItem().getType()) {
-                case NETHER_STAR:
+                case FIRE_CHARGE:
                     player.teleport(new LocationUtil(Main.getInstance(), "locs.spawn").getLocation());
                     player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
                     break;
