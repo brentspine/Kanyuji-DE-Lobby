@@ -37,7 +37,8 @@ public class ScoreboardListener implements Listener {
                 "§f§lRang",
                 "§7Todo", "",
                 "§6§lCoins",
-                "§7Todo", ""
+                "§7Todo",
+                "",
                 "§e§lSpielzeit",
                 "§7Todo",
                 "                       ");
