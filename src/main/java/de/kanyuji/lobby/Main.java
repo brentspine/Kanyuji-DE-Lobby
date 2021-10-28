@@ -29,7 +29,7 @@ public class Main extends JavaPlugin {
     public void register(PluginManager pluginManager) {
         getCommand("setup").setExecutor(new SetupCommand());
         pluginManager.registerEvents(new PlayerConnectionListener(), this);
-        pluginManager.registerEvents(new BlockedListeners(), this);
+        pluginManager.registerEvents(new BlockedListeners().run(), this);
         pluginManager.registerEvents(new ScoreboardListener(), this);
         getServer().getScheduler().runTaskTimer(this, () -> {
             for (FastBoard board : ScoreboardListener.boards.values()) {
