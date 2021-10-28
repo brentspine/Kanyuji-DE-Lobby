@@ -3,7 +3,6 @@ package de.kanyuji.lobby.listeners;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.utils.ItemBuilder;
 import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HideListener implements Listener {
