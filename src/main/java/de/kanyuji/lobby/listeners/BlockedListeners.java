@@ -1,7 +1,8 @@
 package de.kanyuji.lobby.listeners;
 
 import de.kanyuji.lobby.Main;
-import de.kanyuji.lobby.commands.BuildCommand;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -15,17 +16,15 @@ public class BlockedListeners implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if(!BuildCommand.allowedToBuild.contains(event.getPlayer().getUniqueId())) {
+        if(!(event.getPlayer().getGameMode() == GameMode.CREATIVE)) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(Main.PREFIX + "§cDu darfst hier keine Blöcke platzieren!");
         }
     }
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if(!BuildCommand.allowedToBuild.contains(event.getPlayer().getUniqueId())) {
+        if(!(event.getPlayer().getGameMode() == GameMode.CREATIVE)) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(Main.PREFIX + "§cDu darfst hier keine Blöcke abbauen!");
         }
     }
 
