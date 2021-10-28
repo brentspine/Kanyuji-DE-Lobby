@@ -3,6 +3,7 @@ package de.kanyuji.lobby;
 import de.kanyuji.lobby.commands.SetupCommand;
 import de.kanyuji.lobby.commands.SpawnCommand;
 import de.kanyuji.lobby.listeners.BlockedListeners;
+import de.kanyuji.lobby.listeners.HideListener;
 import de.kanyuji.lobby.listeners.PlayerConnectionListener;
 import de.kanyuji.lobby.listeners.ScoreboardListener;
 import de.kanyuji.lobby.fastboard.FastBoard;
@@ -39,6 +40,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockedListeners().run(), this);
         pluginManager.registerEvents(new ScoreboardListener(), this);
         pluginManager.registerEvents(new Inventory(), this);
+        pluginManager.registerEvents(new HideListener(), this);
         getServer().getScheduler().runTaskTimer(this, () -> {
             for (FastBoard board : ScoreboardListener.boards.values()) {
                 ScoreboardListener.updateBoard(board);
