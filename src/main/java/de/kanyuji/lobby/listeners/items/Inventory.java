@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 public class Inventory implements Listener {
 
-    private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 3*6, "§b§lInventar");
-    private static org.bukkit.inventory.Inventory blockTrailInventory = Bukkit.createInventory(null, 3*6, "§b§lPartikel Pakete");
+    private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lInventar");
+    private static org.bukkit.inventory.Inventory blockTrailInventory = Bukkit.createInventory(null, 6*9, "§b§lPartikel Pakete");
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
