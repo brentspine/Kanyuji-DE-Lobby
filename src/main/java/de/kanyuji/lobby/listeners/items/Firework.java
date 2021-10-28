@@ -41,7 +41,7 @@ public class Firework implements Listener {
             event.setCancelled(true);
             switch (event.getCurrentItem().getType()) {
                 case FIRE_CHARGE:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.spawn").getLocation());
+                    player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
                     player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
                     break;
                 case BEDROCK:
