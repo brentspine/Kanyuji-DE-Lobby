@@ -4,7 +4,7 @@ import de.kanyuji.lobby.commands.SetupCommand;
 import de.kanyuji.lobby.listeners.BlockedListeners;
 import de.kanyuji.lobby.listeners.PlayerConnectionListener;
 import de.kanyuji.lobby.listeners.ScoreboardListener;
-import de.kanyuji.lobby.fastboard.FastBoard;
+import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
