@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerConnectionListener implements Listener {
@@ -28,5 +29,12 @@ public class PlayerConnectionListener implements Listener {
         player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§6§lInventar").build());
         //nick tool wird vom nick plugin ins inventar gelegt || Command block zum starten lege ich später ins inventar!!!
         //todo join animation(lass mich das machen)
+    }
+
+    @EventHandler
+    public void handlePlayerQuitEvent(PlayerQuitEvent event) {
+        event.setQuitMessage(null);
+        if(HideListener.cooldown.contains(event.getPlayer()))
+            HideListener.cooldown.remove(event.getPlayer());
     }
 }
