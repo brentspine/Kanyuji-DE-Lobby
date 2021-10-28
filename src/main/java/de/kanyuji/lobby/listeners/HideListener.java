@@ -27,7 +27,7 @@ public class HideListener implements Listener {
             if(!cooldown.contains(player)) {
                 if(event.getItem().getType() == Material.LIME_DYE) {
                     player.getInventory().setItem(1, new ItemBuilder(Material.PURPLE_DYE).setDisplayName("§5Spieler §8» §7Nur VIP").build());
-                    player.sendMessage(Main.PREFIX + "Du siehst nun jeden VIP");
+                    player.sendMessage(Main.PREFIX + "§dDu siehst nun jeden VIP");
                     for(Player hided : Bukkit.getOnlinePlayers()) {
                         if(!hided.hasPermission("system.vip")) {
                             player.hidePlayer(hided);
@@ -45,7 +45,7 @@ public class HideListener implements Listener {
                     }, 60);
                 } else if(event.getItem().getType() == Material.RED_DYE) {
                     player.getInventory().setItem(1, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aSpieler §8» §7Angezeigt").build());
-                    player.sendMessage(Main.PREFIX + "Du siehst nun jeden Spieler wieder");
+                    player.sendMessage(Main.PREFIX + "§aDu siehst nun jeden Spieler wieder");
                     Bukkit.getOnlinePlayers().forEach(player::showPlayer);
                     if(Main.getInstance().getVisibleHandler().getHider().contains(player)) {
                         Main.getInstance().getVisibleHandler().getHider().remove(player);
@@ -59,7 +59,7 @@ public class HideListener implements Listener {
                     }, 60);
                 } else if(event.getItem().getType() == Material.PURPLE_DYE) {
                     player.getInventory().setItem(1, new ItemBuilder(Material.RED_DYE).setDisplayName("§cSpieler §8» §7Versteckt").build());
-                    player.sendMessage(Main.PREFIX + "Du siehst nun keinen Spieler Mehr");
+                    player.sendMessage(Main.PREFIX + "§cDu siehst nun keinen Spieler Mehr");
                     Bukkit.getOnlinePlayers().forEach( player::hidePlayer);
                     if(!Main.getInstance().getVisibleHandler().getHider().contains(player)) {
                         Main.getInstance().getVisibleHandler().getHider().add(player);
