@@ -21,9 +21,9 @@ public class HideListener implements Listener {
             if(event.getItem().getType() == Material.LIME_DYE) {
                 player.getInventory().setItem(1, new ItemBuilder(Material.PURPLE_DYE).setDisplayName("§9Spieler §8» §7Nur VIP").build());
                 player.sendMessage(Main.PREFIX + "Du siehst nun jeden VIP");
-                for(Player hided : Bukkit.getOnlinePlayers()) {
-                    if(!hided.hasPermission("system.vip")) {
-                        player.hidePlayer(hided);
+                for(Player hidden : Bukkit.getOnlinePlayers()) {
+                    if(!hidden.hasPermission("system.vip")) {
+                        player.hidePlayer(hidden);
                     }
                 }
                 if(!Main.getInstance().getVisibleHandler().getHider().contains(player)) {
