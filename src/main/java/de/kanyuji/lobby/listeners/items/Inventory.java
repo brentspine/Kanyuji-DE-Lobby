@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class Inventory implements Listener {
 
@@ -37,30 +38,41 @@ public class Inventory implements Listener {
             if(event.getClickedInventory() == null) return;
             if(event.getCurrentItem() == null) return;
             if(!(event.getCurrentItem().hasItemMeta())) return;
-            if(!event.getView().getTitle().equalsIgnoreCase("§b§lInventar")) return;
-            event.setCancelled(true);
-            switch (event.getCurrentItem().getType()) {
-                case LIME_STAINED_GLASS:
-
-                    break;
-                case BEDROCK:
-                    player.sendMessage(Main.PREFIX + "Placeholder");
-                    break;
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lInventar")) {
+                event.setCancelled(true);
+                handleMainInventoryClick(event.getCurrentItem().getType(), player);
             }
         }
     }
 
+    public void handleMainInventoryClick(Material material, Player player) {
+        switch (material) {
+            case LIME_STAINED_GLASS:
+
+                break;
+            case BEDROCK:
+                player.sendMessage(Main.PREFIX + "Placeholder");
+                break;
+        }
+    }
+
     public static void setInventory() {
-        inventory.setItem(3, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
-        inventory.setItem(5, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
-        inventory.setItem(10, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
-        inventory.setItem(16, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
-        inventory.setItem(22, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§e§lEvent").build());
-        inventory.setItem(31, new ItemBuilder(Material.FIRE_CHARGE).setDisplayName("§7Spawn").build());
-        inventory.setItem(37, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
-        inventory.setItem(43, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
-        inventory.setItem(48, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
-        inventory.setItem(50, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
+        ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
+        for (int i = 0; i < 10; i++) {
+            inventory.setItem(i, grayPane);
+        }
+        inventory.setItem(10, new ItemBuilder(Material.LIME_STAINED_GLASS).setDisplayName("§6Block Trails").setLore("§7Wenn aktiviert erscheint", "§7beim bewegen hinter dir", "§7die ausgewählte Blockart").build());
+        inventory.setItem(11, grayPane);
+        inventory.setItem(12, grayPane);
+
+        inventory.setItem(14, grayPane);
+        inventory.setItem(15, grayPane);
+
+        inventory.setItem(17, grayPane);
+        inventory.setItem(18, grayPane);
+        for (int i = 19; i < 28; i++) {
+            inventory.setItem(i, grayPane);
+        }
     }
 
 }
