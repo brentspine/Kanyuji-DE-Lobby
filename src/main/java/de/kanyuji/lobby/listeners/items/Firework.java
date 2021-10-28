@@ -1,6 +1,7 @@
 package de.kanyuji.lobby.listeners.items;
 
 import de.kanyuji.lobby.Main;
+import de.kanyuji.lobby.utils.ItemBuilder;
 import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -50,4 +51,16 @@ public class Firework implements Listener {
         }
     }
 
+    public static void setInventory() {
+        inventory.setItem(3, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
+        inventory.setItem(5, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
+        inventory.setItem(10, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
+        inventory.setItem(16, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
+        inventory.setItem(22, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§e§lEvent").build());
+        inventory.setItem(31, new ItemBuilder(Material.FIRE_CHARGE).setDisplayName("§7Spawn").build());
+        inventory.setItem(37, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
+        inventory.setItem(43, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
+        inventory.setItem(48, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
+        inventory.setItem(50, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
+    }
 }

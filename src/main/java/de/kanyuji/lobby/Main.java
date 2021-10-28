@@ -37,6 +37,7 @@ public class Main extends JavaPlugin {
             }
         }, 0, 20);
         pluginManager.registerEvents(new Firework(), this);
+        Firework.setInventory();
     }
 
 }
