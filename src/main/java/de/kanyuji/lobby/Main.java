@@ -8,7 +8,7 @@ import de.kanyuji.lobby.listeners.ScoreboardListener;
 import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.listeners.items.Firework;
 import de.kanyuji.lobby.listeners.items.Inventory;
-import de.kanyuji.lobby.utils.Visiblehandler;
+import de.kanyuji.lobby.utils.VisibleHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,7 +17,7 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
     public static final String PREFIX = "§b§lLobby §8» §7";
-    private Visiblehandler visiblehandler;
+    private VisibleHandler visiblehandler;
 
 
     @Override
@@ -25,7 +25,7 @@ public class Main extends JavaPlugin {
         super.onEnable();
         instance = this;
         register(Bukkit.getPluginManager());
-        visiblehandler = new Visiblehandler();
+        visiblehandler = new VisibleHandler();
     }
 
     public static Main getInstance() {
@@ -48,7 +48,7 @@ public class Main extends JavaPlugin {
         Firework.setInventory();
     }
 
-    public Visiblehandler getVisiblehandler() {
+    public VisibleHandler getVisibleHandler() {
         return visiblehandler;
     }
 }

@@ -26,22 +26,22 @@ public class HideListener implements Listener {
                         player.hidePlayer(hided);
                     }
                 }
-                if(!Main.getInstance().getVisiblehandler().getHider().contains(player)) {
-                    Main.getInstance().getVisiblehandler().getHider().add(player);
+                if(!Main.getInstance().getVisibleHandler().getHider().contains(player)) {
+                    Main.getInstance().getVisibleHandler().getHider().add(player);
                 }
             } else if(event.getItem().getType() == Material.RED_DYE) {
                 player.getInventory().setItem(1, new ItemBuilder(Material.LIME_DYE).setDisplayName("§9Spieler §8» §7Angezeigt").build());
                 player.sendMessage(Main.PREFIX + "Du siehst nun jeden Spieler wieder");
                 Bukkit.getOnlinePlayers().forEach(player::showPlayer);
-                if(Main.getInstance().getVisiblehandler().getHider().contains(player)) {
-                    Main.getInstance().getVisiblehandler().getHider().remove(player);
+                if(Main.getInstance().getVisibleHandler().getHider().contains(player)) {
+                    Main.getInstance().getVisibleHandler().getHider().remove(player);
                 }
             } else if(event.getItem().getType() == Material.PURPLE_DYE) {
                 player.getInventory().setItem(1, new ItemBuilder(Material.RED_DYE).setDisplayName("§9Spieler §8» §7Versteckt").build());
                 player.sendMessage(Main.PREFIX + "Du siehst nun keinen Spieler Mehr");
                 Bukkit.getOnlinePlayers().forEach( player::hidePlayer);
-                if(!Main.getInstance().getVisiblehandler().getHider().contains(player)) {
-                    Main.getInstance().getVisiblehandler().getHider().add(player);
+                if(!Main.getInstance().getVisibleHandler().getHider().contains(player)) {
+                    Main.getInstance().getVisibleHandler().getHider().add(player);
                 }
             }
         }
