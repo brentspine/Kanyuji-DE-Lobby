@@ -7,3 +7,5 @@ main: de.kanyuji.lobby.Main
 commands:
   setup:
     description: Setup
+  spawn:
+    description: Spawn
