@@ -19,7 +19,7 @@ public class ScoreboardListener implements Listener {
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         FastBoard board = new FastBoard(player);
-        board.updateTitle("      §b§lLobby      ");
+        board.updateTitle("§b§lLobby");
         boards.put(player.getUniqueId(), board);
     }
 
@@ -37,10 +37,10 @@ public class ScoreboardListener implements Listener {
                 "§f§lRang",
                 "§7Todo", "",
                 "§6§lCoins",
-                "§7Todo",
+                "§7Todo", ""
                 "§e§lSpielzeit",
                 "§7Todo",
-                "");
+                "                       ");
     }
 
 
