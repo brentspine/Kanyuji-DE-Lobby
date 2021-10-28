@@ -25,6 +25,7 @@ public class Firework implements Listener {
             if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
                 if(event.getItem().getType() == Material.FIREWORK_ROCKET) {
                     event.getPlayer().openInventory(inventory);
+                    event.setCancelled(true);
                 }
             }
         }

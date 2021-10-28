@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class Inventory implements Listener {
 
-    private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 9*6, "§b§lInventar");
+    private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 3*6, "§b§lInventar");
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -25,6 +25,7 @@ public class Inventory implements Listener {
             if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
                 if(event.getItem().getType() == Material.CHEST) {
                     event.getPlayer().openInventory(inventory);
+                    event.setCancelled(true);
                 }
 
             }
@@ -70,9 +71,14 @@ public class Inventory implements Listener {
 
         inventory.setItem(17, grayPane);
         inventory.setItem(18, grayPane);
-        for (int i = 19; i < 28; i++) {
+        for (int i = 19; i < 27; i++) {
             inventory.setItem(i, grayPane);
         }
+    }
+
+    public static void setBlockTrailInventory() {
+        ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
+
     }
 
 }
