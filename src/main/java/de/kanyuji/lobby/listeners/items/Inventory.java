@@ -14,9 +14,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+
 public class Inventory implements Listener {
 
     private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 3*6, "§b§lInventar");
+    private static org.bukkit.inventory.Inventory blockTrailInventory = Bukkit.createInventory(null, 3*6, "§b§lPartikel Pakete");
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -42,6 +45,7 @@ public class Inventory implements Listener {
             if(event.getView().getTitle().equalsIgnoreCase("§b§lInventar")) {
                 event.setCancelled(true);
                 handleMainInventoryClick(event.getCurrentItem().getType(), player);
+                //todo event.getCurrentItem().setItemMeta(new ItemBuilder(event.getCurrentItem()).setLore("§aZum auswählen klicken").build().getItemMeta());
             }
         }
     }
@@ -49,7 +53,13 @@ public class Inventory implements Listener {
     public void handleMainInventoryClick(Material material, Player player) {
         switch (material) {
             case LIME_STAINED_GLASS:
+                player.openInventory(blockTrailInventory);
+                break;
+            case NETHER_STAR:
 
+                break;
+            case GOLDEN_BOOTS:
+                Integer i = 0;
                 break;
             case BEDROCK:
                 player.sendMessage(Main.PREFIX + "Placeholder");
@@ -57,28 +67,53 @@ public class Inventory implements Listener {
         }
     }
 
+    public void handleBlockTrailInventoryClick(Material material, Player player) {
+        if(player.hasPermission("system.blocktrails." + material.name())) {
+            player.sendMessage(Main.PREFIX + "Du hast den §c" + material.name() + "§7 Trail ausgewählt");
+        }
+    }
+
     public static void setInventory() {
-        ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
-        //for (int i = 0; i < 10; i++) {
-            //inventory.setItem(i, grayPane);
-        //}
-        inventory.setItem(10, new ItemBuilder(Material.LIME_STAINED_GLASS).setDisplayName("§6Block Trails").setLore("§7Wenn aktiviert erscheint", "§7beim bewegen hinter dir", "§7die ausgewählte Blockart").build());
-        //inventory.setItem(11, grayPane);
-        //inventory.setItem(12, grayPane);
-
-        //inventory.setItem(14, grayPane);
-        //inventory.setItem(15, grayPane);
-
-        //inventory.setItem(17, grayPane);
-        //inventory.setItem(18, grayPane);
-        //for (int i = 19; i < 27; i++) {
-            //inventory.setItem(i, grayPane);
-        //}
+        inventory.setItem(10, new ItemBuilder(Material.LIME_STAINED_GLASS).setDisplayName("§6Block Trails").setLore("§7Wenn aktiviert erscheint beim bewegen hinter dir", "§7die ausgewählte Blockart").build());
+        inventory.setItem(13, new ItemBuilder(Material.NETHER_STAR).setDisplayName("§9Partikel Effekte").setLore("§7Erhalte einen schönen Partikeleffekt um dich herum").build());
+        inventory.setItem(16, new ItemBuilder(Material.GOLDEN_BOOTS).setDisplayName("§eSpielzeuge").setDisplayName("§7Habe ein bisschen Spaß zwischendurch mit Minispielen").build());
     }
 
     public static void setBlockTrailInventory() {
-        ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
 
+        blockTrailInventory.setItem(10, new ItemBuilder(Material.BARRIER).setDisplayName("§cNone").build());
+        blockTrailInventory.setItem(11, new ItemBuilder(Material.QUARTZ_BLOCK).setDisplayName("§7Quartz Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(12, new ItemBuilder(Material.COAL_BLOCK).setDisplayName("§7Coal Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(13, new ItemBuilder(Material.BRICKS).setDisplayName("§7Bricks Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(14, new ItemBuilder(Material.SNOW_BLOCK).setDisplayName("§7Snow Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(15, new ItemBuilder(Material.NETHERRACK).setDisplayName("§7Netherrack Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(16, new ItemBuilder(Material.LIGHT_BLUE_TERRACOTTA).setDisplayName("§7Blue Terracotta Trail").setLore("§cNoch nicht gefunden").build());
+
+        blockTrailInventory.setItem(19, new ItemBuilder(Material.RED_STAINED_GLASS).setDisplayName("§7Red Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(20, new ItemBuilder(Material.BLUE_STAINED_GLASS).setDisplayName("§7Blue Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(21, new ItemBuilder(Material.GREEN_STAINED_GLASS).setDisplayName("§7Green Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(22, new ItemBuilder(Material.LIME_STAINED_GLASS).setDisplayName("§9Light Green Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(23, new ItemBuilder(Material.ORANGE_STAINED_GLASS).setDisplayName("§9Orange Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(24, new ItemBuilder(Material.WHITE_STAINED_GLASS).setDisplayName("§1White Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(25, new ItemBuilder(Material.BLACK_STAINED_GLASS).setDisplayName("§1Blue Terracotta Trail").setLore("§cNoch nicht gefunden").build());
+
+        blockTrailInventory.setItem(28, new ItemBuilder(Material.NETHER_BRICKS).setDisplayName("§1Nether Brick Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(29, new ItemBuilder(Material.PINK_TERRACOTTA).setDisplayName("§1Pink Terracotta Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(30, new ItemBuilder(Material.YELLOW_TERRACOTTA).setDisplayName("§1Yellow Terracotta Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(31, new ItemBuilder(Material.GOLD_ORE).setDisplayName("§1Gold Ore Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(32, new ItemBuilder(Material.COAL_ORE).setDisplayName("§1Coal Ore Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(33, new ItemBuilder(Material.REDSTONE_ORE).setDisplayName("§1Redstone Ore Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(34, new ItemBuilder(Material.PRISMARINE_BRICKS).setDisplayName("§1Prismarine Trail").setLore("§cNoch nicht gefunden").build());
+
+        blockTrailInventory.setItem(37, new ItemBuilder(Material.LAPIS_BLOCK).setDisplayName("§6Lapis Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(38, new ItemBuilder(Material.REDSTONE_BLOCK).setDisplayName("§6Redstone Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(39, new ItemBuilder(Material.BONE_BLOCK).setDisplayName("§6Bone Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(40, new ItemBuilder(Material.OBSIDIAN).setDisplayName("§6Obsidian Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(41, new ItemBuilder(Material.SEA_LANTERN).setDisplayName("§2Sea Lantern Trail").setLore("§cNoch nicht gefunden").build());
+        blockTrailInventory.setItem(42, new ItemBuilder(Material.DIAMOND_ORE).setDisplayName("§4Diamond Trail").setLore("§cVon Admins vergeben").build());
+        blockTrailInventory.setItem(43, new ItemBuilder(Material.BEDROCK).setDisplayName("§4Bedrock Trail").setLore("§cNur für Teammitglieder").build());
+
+        //todo Obsidian, snow, Netherrack, Bedrock, Red, Blue, Green, Orange, Netherbricks
     }
 
 }
