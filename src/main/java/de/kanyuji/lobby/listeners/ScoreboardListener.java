@@ -1,6 +1,6 @@
 package de.kanyuji.lobby.listeners;
 
-import fr.mrmicky.fastboard.FastBoard;
+import de.kanyuji.lobby.fastboard.FastBoard;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,7 +32,15 @@ public class ScoreboardListener implements Listener {
         }
     }
     public static void updateBoard(FastBoard board) {
-        board.updateLines("", "§f§lRang", "§7Todo", "", "§6§lCoins", "§7Todo", "§e§lSpielzeit", "§7Todo", "");
+        board.updateLines(
+                "",
+                "§f§lRang",
+                "§7Todo", "",
+                "§6§lCoins",
+                "§7Todo",
+                "§e§lSpielzeit",
+                "§7Todo",
+                "");
     }
 
 
