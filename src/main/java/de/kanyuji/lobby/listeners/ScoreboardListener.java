@@ -1,6 +1,7 @@
 package de.kanyuji.lobby.listeners;
 
 import de.kanyuji.lobby.fastboard.FastBoard;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,7 +20,7 @@ public class ScoreboardListener implements Listener {
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         FastBoard board = new FastBoard(player);
-        board.updateTitle("§b§lLobby");
+        board.updateTitle(ChatColor.AQUA.toString() + ChatColor.BOLD + "Lobby");
         boards.put(player.getUniqueId(), board);
     }
 
