@@ -59,21 +59,21 @@ public class Inventory implements Listener {
 
     public static void setInventory() {
         ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
-        for (int i = 0; i < 10; i++) {
-            inventory.setItem(i, grayPane);
-        }
+        //for (int i = 0; i < 10; i++) {
+            //inventory.setItem(i, grayPane);
+        //}
         inventory.setItem(10, new ItemBuilder(Material.LIME_STAINED_GLASS).setDisplayName("§6Block Trails").setLore("§7Wenn aktiviert erscheint", "§7beim bewegen hinter dir", "§7die ausgewählte Blockart").build());
-        inventory.setItem(11, grayPane);
-        inventory.setItem(12, grayPane);
+        //inventory.setItem(11, grayPane);
+        //inventory.setItem(12, grayPane);
 
-        inventory.setItem(14, grayPane);
-        inventory.setItem(15, grayPane);
+        //inventory.setItem(14, grayPane);
+        //inventory.setItem(15, grayPane);
 
-        inventory.setItem(17, grayPane);
-        inventory.setItem(18, grayPane);
-        for (int i = 19; i < 27; i++) {
-            inventory.setItem(i, grayPane);
-        }
+        //inventory.setItem(17, grayPane);
+        //inventory.setItem(18, grayPane);
+        //for (int i = 19; i < 27; i++) {
+            //inventory.setItem(i, grayPane);
+        //}
     }
 
     public static void setBlockTrailInventory() {
