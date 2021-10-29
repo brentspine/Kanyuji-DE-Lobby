@@ -43,7 +43,7 @@ public class Profile implements Listener {
             if(event.getClickedInventory() == null) return;
             if(event.getCurrentItem() == null) return;
             if(!(event.getCurrentItem().hasItemMeta())) return;
-            if(event.getView().getTitle().equalsIgnoreCase("§9Profile")) {
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lProfile")) {
                 handleMainInventoryClick(event.getCurrentItem().getType(), player);
                 event.setCancelled(true);
             }
@@ -64,6 +64,7 @@ public class Profile implements Listener {
                 player.closeInventory();
                 break;
             case PLAYER_HEAD:
+
                 break;
             case BEDROCK:
                 player.sendMessage(Main.PREFIX + "Placeholder");
