@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class Inventory implements Listener {
 
     private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lInventar");
-    private static org.bukkit.inventory.Inventory blockTrailInventory = Bukkit.createInventory(null, 6*9, "§b§lPartikel Pakete");
+    private static org.bukkit.inventory.Inventory blockTrailInventory = Bukkit.createInventory(null, 6*9, "§b§lBlock Trails");
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -43,9 +43,11 @@ public class Inventory implements Listener {
             if(event.getCurrentItem() == null) return;
             if(!(event.getCurrentItem().hasItemMeta())) return;
             if(event.getView().getTitle().equalsIgnoreCase("§b§lInventar")) {
-                event.setCancelled(true);
                 handleMainInventoryClick(event.getCurrentItem().getType(), player);
                 //todo event.getCurrentItem().setItemMeta(new ItemBuilder(event.getCurrentItem()).setLore("§aZum auswählen klicken").build().getItemMeta());
+            }
+            else if(event.getView().getTitle().equalsIgnoreCase("§b§lBlock Trails")) {
+                handleBlockTrailInventoryClick(event.getCurrentItem().getType(), player);
             }
         }
     }
@@ -68,6 +70,10 @@ public class Inventory implements Listener {
     }
 
     public void handleBlockTrailInventoryClick(Material material, Player player) {
+        if(material == Material.ARROW) {
+            player.openInventory(inventory);
+            return;
+        }
         if(player.hasPermission("system.blocktrails." + material.name())) {
             player.sendMessage(Main.PREFIX + "Du hast den §c" + material.name() + "§7 Trail ausgewählt");
         } else
@@ -81,31 +87,34 @@ public class Inventory implements Listener {
     }
 
     public static void setBlockTrailInventory() {
+
         blockTrailInventory.setItem(10, new ItemBuilder(Material.BARRIER).setDisplayName("§cNone").build());
-        blockTrailInventory.setItem(11, new ItemBuilder(Material.QUARTZ_BLOCK).setDisplayName("§7Quartz Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
-        blockTrailInventory.setItem(12, new ItemBuilder(Material.COAL_BLOCK).setDisplayName("§7Coal Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
-        blockTrailInventory.setItem(13, new ItemBuilder(Material.BRICKS).setDisplayName("§7Brick Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
-        blockTrailInventory.setItem(14, new ItemBuilder(Material.SNOW_BLOCK).setDisplayName("§7Snow Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
-        blockTrailInventory.setItem(15, new ItemBuilder(Material.NETHERRACK).setDisplayName("§7Netherrack Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
-        blockTrailInventory.setItem(16, new ItemBuilder(Material.REDSTONE_ORE).setDisplayName("§9Redstone Ore Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
+        blockTrailInventory.setItem(11, new ItemBuilder(Material.QUARTZ_BLOCK).setDisplayName("§7Quartz Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        blockTrailInventory.setItem(12, new ItemBuilder(Material.COAL_BLOCK).setDisplayName("§7Coal Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        blockTrailInventory.setItem(13, new ItemBuilder(Material.BRICKS).setDisplayName("§7Brick Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        blockTrailInventory.setItem(14, new ItemBuilder(Material.SNOW_BLOCK).setDisplayName("§7Snow Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        blockTrailInventory.setItem(15, new ItemBuilder(Material.NETHERRACK).setDisplayName("§7Netherrack Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        blockTrailInventory.setItem(16, new ItemBuilder(Material.REDSTONE_ORE).setDisplayName("§9Redstone Ore Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
 
-        blockTrailInventory.setItem(19, new ItemBuilder(Material.RED_STAINED_GLASS).setDisplayName("§9Red Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
-        blockTrailInventory.setItem(20, new ItemBuilder(Material.BLUE_STAINED_GLASS).setDisplayName("§9Blue Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
-        blockTrailInventory.setItem(21, new ItemBuilder(Material.LIME_STAINED_GLASS).setDisplayName("§9Lime Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
-        blockTrailInventory.setItem(22, new ItemBuilder(Material.NETHER_BRICKS).setDisplayName("§5Netherbricks Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic").build());
-        blockTrailInventory.setItem(23, new ItemBuilder(Material.REDSTONE_BLOCK).setDisplayName("§5Redstone Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic").build());
-        blockTrailInventory.setItem(24, new ItemBuilder(Material.WHITE_STAINED_GLASS).setDisplayName("§5White Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic").build());
-        blockTrailInventory.setItem(25, new ItemBuilder(Material.BLACK_STAINED_GLASS).setDisplayName("§5Black Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic").build());
+        blockTrailInventory.setItem(19, new ItemBuilder(Material.RED_STAINED_GLASS).setDisplayName("§9Red Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
+        blockTrailInventory.setItem(20, new ItemBuilder(Material.BLUE_STAINED_GLASS).setDisplayName("§9Blue Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
+        blockTrailInventory.setItem(21, new ItemBuilder(Material.LIME_STAINED_GLASS).setDisplayName("§9Lime Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
+        blockTrailInventory.setItem(22, new ItemBuilder(Material.NETHER_BRICKS).setDisplayName("§5Netherbricks Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic", "").build());
+        blockTrailInventory.setItem(23, new ItemBuilder(Material.REDSTONE_BLOCK).setDisplayName("§5Redstone Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic", "").build());
+        blockTrailInventory.setItem(24, new ItemBuilder(Material.WHITE_STAINED_GLASS).setDisplayName("§5White Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic", "").build());
+        blockTrailInventory.setItem(25, new ItemBuilder(Material.BLACK_STAINED_GLASS).setDisplayName("§5Black Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic", "").build());
 
-        blockTrailInventory.setItem(28, new ItemBuilder(Material.DARK_PRISMARINE).setDisplayName("§5Dark Prismarine Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic").build());
-        blockTrailInventory.setItem(29, new ItemBuilder(Material.PRISMARINE_BRICKS).setDisplayName("§9Prismarine Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Legendary").build());
-        blockTrailInventory.setItem(30, new ItemBuilder(Material.LAPIS_BLOCK).setDisplayName("§9Lapis Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Legendary").build());
-        blockTrailInventory.setItem(31, new ItemBuilder(Material.OBSIDIAN).setDisplayName("§9Obisdian Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Legendary").build());
-        blockTrailInventory.setItem(32, new ItemBuilder(Material.SEA_LANTERN).setDisplayName("§9Sea Lantern Trail").setLore("§8Block Trail", "", "§aGesperrte Belohnung", "", "§aRarity: §9Legendary").build());
-        blockTrailInventory.setItem(33, new ItemBuilder(Material.DIAMOND_ORE).setDisplayName("§4White Trail").setLore("§8Block Trail", "", "§aKann von Admins vergeben werden", "", "§aRarity: §4Special").build());
-        blockTrailInventory.setItem(34, new ItemBuilder(Material.BEDROCK).setDisplayName("§4Black Trail").setLore("§8Block Trail", "", "§aFür Admins und höhere Teammitglieder", "", "§aRarity: §4Special").build());
+        blockTrailInventory.setItem(28, new ItemBuilder(Material.DARK_PRISMARINE).setDisplayName("§5Dark Prismarine Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic", "").build());
+        blockTrailInventory.setItem(29, new ItemBuilder(Material.PRISMARINE_BRICKS).setDisplayName("§9Prismarine Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Legendary", "").build());
+        blockTrailInventory.setItem(30, new ItemBuilder(Material.LAPIS_BLOCK).setDisplayName("§9Lapis Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Legendary", "").build());
+        blockTrailInventory.setItem(31, new ItemBuilder(Material.OBSIDIAN).setDisplayName("§9Obisdian Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Legendary", "").build());
+        blockTrailInventory.setItem(32, new ItemBuilder(Material.SEA_LANTERN).setDisplayName("§9Sea Lantern Trail").setLore("§8Block Trail", "", "§aGesperrte Belohnung", "", "§aRarity: §9Legendary", "").build());
+        blockTrailInventory.setItem(33, new ItemBuilder(Material.DIAMOND_ORE).setDisplayName("§4White Trail").setLore("§8Block Trail", "", "§aKann von Admins vergeben werden", "", "§aRarity: §4Special", "").build());
+        blockTrailInventory.setItem(34, new ItemBuilder(Material.BEDROCK).setDisplayName("§4Bedrock Trail").setLore("§8Block Trail", "", "§aFür Admins und höhere Teammitglieder", "", "§aRarity: §4Special", "").build());
 
-
+        blockTrailInventory.setItem(48, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
+        blockTrailInventory.setItem(49, new ItemBuilder(Material.EMERALD_BLOCK).setDisplayName("TODO Pixel").build());
+        //todo
     }
 
     public static void setOldBlockTrailInventory() {

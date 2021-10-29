@@ -7,6 +7,7 @@ import de.kanyuji.lobby.listeners.HideListener;
 import de.kanyuji.lobby.listeners.PlayerConnectionListener;
 import de.kanyuji.lobby.listeners.ScoreboardListener;
 import de.kanyuji.lobby.fastboard.FastBoard;
+import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.listeners.items.Firework;
 import de.kanyuji.lobby.listeners.items.Inventory;
 import de.kanyuji.lobby.utils.VisibleHandler;
@@ -41,6 +42,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new ScoreboardListener(), this);
         pluginManager.registerEvents(new Inventory(), this);
         pluginManager.registerEvents(new HideListener(), this);
+        pluginManager.registerEvents(new BlockTrails(), this);
         getServer().getScheduler().runTaskTimer(this, () -> {
             for (FastBoard board : ScoreboardListener.boards.values()) {
                 ScoreboardListener.updateBoard(board);
