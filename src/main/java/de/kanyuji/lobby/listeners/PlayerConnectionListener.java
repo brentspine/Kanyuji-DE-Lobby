@@ -21,7 +21,7 @@ public class PlayerConnectionListener implements Listener {
         player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
         player.setFoodLevel(20);
         player.setMaxHealth(6);
-        player.setGameMode(GameMode.ADVENTURE);
+        player.setGameMode(GameMode.SURVIVAL);
         player.getInventory().setItem(0, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§b§lTeleporter").build());
         player.getInventory().setItem(1, new ItemBuilder(Material.LIME_DYE).setDisplayName("§9Spieler §8» §7Angezeigt").build());
         player.getInventory().setItem(4, new ItemBuilder(Material.FIREWORK_STAR).setDisplayName("§7Gadget").build());
