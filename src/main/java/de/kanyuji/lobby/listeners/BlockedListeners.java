@@ -56,11 +56,7 @@ public class BlockedListeners implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        if(event.getClickedInventory().getType() == InventoryType.PLAYER) {
-            if(event.getRawSlot() <= 8) {
-                event.setCancelled(true);
-            }
-        }
+        event.setCancelled(true);
     }
 
     @EventHandler
