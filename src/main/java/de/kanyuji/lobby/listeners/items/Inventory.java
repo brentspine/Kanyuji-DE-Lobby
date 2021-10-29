@@ -87,7 +87,7 @@ public class Inventory implements Listener {
         blockTrailInventory.setItem(13, new ItemBuilder(Material.BRICKS).setDisplayName("§7Brick Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
         blockTrailInventory.setItem(14, new ItemBuilder(Material.SNOW_BLOCK).setDisplayName("§7Snow Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
         blockTrailInventory.setItem(15, new ItemBuilder(Material.NETHERRACK).setDisplayName("§7Netherrack Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common").build());
-        blockTrailInventory.setItem(16, new ItemBuilder(Material.REDSTONE_ORE).setDisplayName("§9Coal Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
+        blockTrailInventory.setItem(16, new ItemBuilder(Material.REDSTONE_ORE).setDisplayName("§9Redstone Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
 
         blockTrailInventory.setItem(19, new ItemBuilder(Material.RED_STAINED_GLASS).setDisplayName("§9Red Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
         blockTrailInventory.setItem(20, new ItemBuilder(Material.BLUE_STAINED_GLASS).setDisplayName("§9Blue Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare").build());
