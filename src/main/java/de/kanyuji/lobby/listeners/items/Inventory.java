@@ -1,6 +1,7 @@
 package de.kanyuji.lobby.listeners.items;
 
 import de.kanyuji.lobby.Main;
+import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.utils.ItemBuilder;
 import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Bukkit;
@@ -76,6 +77,7 @@ public class Inventory implements Listener {
         }
         if(player.hasPermission("system.blocktrails." + material.name())) {
             player.sendMessage(Main.PREFIX + "Du hast den §c" + material.name() + "§7 Trail ausgewählt");
+            BlockTrails.setEquippedTrail(player.getUniqueId(), material);
         } else
             player.sendMessage(Main.PREFIX + "Du §cbesitzt §7diesen Blocktrail §cnicht");
     }

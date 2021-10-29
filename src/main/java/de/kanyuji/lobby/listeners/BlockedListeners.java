@@ -35,6 +35,13 @@ public class BlockedListeners implements Listener {
     }
 
     @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if(!(event.getWhoClicked().getGameMode() == GameMode.CREATIVE)) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
     public void onPlayerDamage(EntityDamageEvent event) {
         event.setCancelled(true);
     }
@@ -52,11 +59,6 @@ public class BlockedListeners implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         event.setQuitMessage(null);
-    }
-
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        event.setCancelled(true);
     }
 
     @EventHandler

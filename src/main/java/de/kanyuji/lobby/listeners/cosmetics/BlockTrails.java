@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class BlockTrails implements Listener {
 
-    HashMap<UUID, Material> equippedTrail = new HashMap<>();
+    private static HashMap<UUID, Material> equippedTrail = new HashMap<>();
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
@@ -29,7 +29,13 @@ public class BlockTrails implements Listener {
             return;
         }
         block.setType(material);
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> block.setType(oldMaterial), 40);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> block.getLocation().getBlock().setType(oldMaterial), 40);
+    }
+
+
+    public static void setEquippedTrail(UUID uuid, Material material) {
+        equippedTrail.remove(uuid);
+        equippedTrail.put(uuid, material);
     }
 
 }
