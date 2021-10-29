@@ -10,6 +10,7 @@ import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.listeners.items.Firework;
 import de.kanyuji.lobby.listeners.items.Inventory;
+import de.kanyuji.lobby.listeners.items.Profile;
 import de.kanyuji.lobby.utils.MySQL;
 import de.kanyuji.lobby.utils.VisibleHandler;
 import org.bukkit.Bukkit;
@@ -49,6 +50,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new Inventory(), this);
         pluginManager.registerEvents(new HideListener(), this);
         pluginManager.registerEvents(new BlockTrails(), this);
+        pluginManager.registerEvents(new Profile(), this);
         getServer().getScheduler().runTaskTimer(this, () -> {
             for (FastBoard board : ScoreboardListener.boards.values()) {
                 ScoreboardListener.updateBoard(board);
@@ -59,6 +61,7 @@ public class Main extends JavaPlugin {
         Inventory.setInventory();
         Inventory.setBlockTrailInventory();
         BlockTrails.run();
+        Profile.setInventory();
     }
 
     public VisibleHandler getVisibleHandler() {
