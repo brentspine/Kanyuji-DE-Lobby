@@ -17,6 +17,7 @@ public class PlayerConnectionListener implements Listener {
     @EventHandler
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        ScoreboardListener.updateCoins(player.getUniqueId());
         player.getInventory().clear();
         player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
         player.setFoodLevel(20);

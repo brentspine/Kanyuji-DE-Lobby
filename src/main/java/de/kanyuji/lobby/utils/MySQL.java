@@ -12,14 +12,14 @@ public class MySQL {
     public static String host = "localhost";
     public static String port = "3306";
     public static String database = "kanyuji";
-    public static String username = "root";
+    public static String user = "root";
     public static String password = "";
     public static Connection connection;
 
     public static void connect() {
         if(!isConnected()) {
             try {
-                connection = DriverManager.getConnection("jdbc://" + host + ":" + port + "/" + database + "?autoReconnect=true", username, password);
+                connection = DriverManager.getConnection("jdbc://" + host + ":" + port + "/" + database + "?autoReconnect=true", user, password);
             } catch (SQLException e) {
                 Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "Die MySQL wurde nicht verbunden!");
             }

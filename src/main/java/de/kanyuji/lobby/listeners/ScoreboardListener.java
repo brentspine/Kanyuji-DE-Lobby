@@ -1,6 +1,8 @@
 package de.kanyuji.lobby.listeners;
 
 import de.kanyuji.lobby.fastboard.FastBoard;
+import de.kanyuji.lobby.mysql.MySQLCoins;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +17,7 @@ import java.util.UUID;
 public class ScoreboardListener implements Listener {
 
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
+    public static final Map<UUID, Integer> coins = new HashMap<>();
 
     @EventHandler
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
@@ -38,13 +41,21 @@ public class ScoreboardListener implements Listener {
                 "§fRang",
                 "§7Todo", "",
                 "§6Coins",
-                "§7Todo", "",
+                "§7" + MySQLCoins.getPoints(board.getPlayer().getUniqueId()), "",
                 "§eSpielzeit",
-                "§7Todo", "",
-                "§aUhrzeit",
                 "§7Todo",
                 "             ");
     }
 
+
+    public static void updateCoins(UUID uuid) {
+        coins.put(uuid, MySQLCoins.getPoints(uuid));
+    }
+
+    public static void run() {
+        for(Player player : Bukkit.getOnlinePlayers()) {
+            coins.put(player.getUniqueId(), MySQLCoins.getPoints(player.getUniqueId()));
+        }
+    }
 
 }
