@@ -70,7 +70,8 @@ public class Inventory implements Listener {
     public void handleBlockTrailInventoryClick(Material material, Player player) {
         if(player.hasPermission("system.blocktrails." + material.name())) {
             player.sendMessage(Main.PREFIX + "Du hast den §c" + material.name() + "§7 Trail ausgewählt");
-        }
+        } else
+            player.sendMessage(Main.PREFIX + "Du §cbesitzt §7diesen Blocktrail §cnicht");
     }
 
     public static void setInventory() {
