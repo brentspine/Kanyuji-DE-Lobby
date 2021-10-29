@@ -26,7 +26,7 @@ public class PlayerConnectionListener implements Listener {
         player.getInventory().setItem(1, new ItemBuilder(Material.LIME_DYE).setDisplayName("§9Spieler §8» §7Angezeigt").build());
         player.getInventory().setItem(4, new ItemBuilder(Material.FIREWORK_STAR).setDisplayName("§7Gadget").build());
         player.getInventory().setItem(7, new ItemBuilder(Material.CHEST).setDisplayName("§6§lInventar").build());
-        player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§6§lInventar").build());
+        player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§b§lProfil").build());
         //nick tool wird vom nick plugin ins inventar gelegt || Command block zum starten lege ich später ins inventar!!!
         //todo join animation(lass mich das machen)
     }
