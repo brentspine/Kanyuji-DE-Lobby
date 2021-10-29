@@ -56,7 +56,7 @@ public class Profile implements Listener {
             case PAPER:
                 BaseComponent[] component =
                         new ComponentBuilder(Main.PREFIX).bold(true)
-                                .append("Hier ").color(ChatColor.GRAY).event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://kanyuji.de/discord")).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT)).bold(true)
+                                .append("Hier ").color(ChatColor.GRAY).event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://kanyuji.de/discord")).bold(true)
                                 .append("geht es zum ").color(ChatColor.GRAY)
                                 .append("Discord").color(ChatColor.RED).create();
 

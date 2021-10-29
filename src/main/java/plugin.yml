@@ -9,3 +9,5 @@ commands:
     description: Setup
   spawn:
     description: Spawn
+  discord:
+    description: Discord

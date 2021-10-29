@@ -1,5 +1,6 @@
 package de.kanyuji.lobby;
 
+import de.kanyuji.lobby.commands.DiscordCommand;
 import de.kanyuji.lobby.commands.SetupCommand;
 import de.kanyuji.lobby.commands.SpawnCommand;
 import de.kanyuji.lobby.listeners.BlockedListeners;
@@ -44,6 +45,7 @@ public class Main extends JavaPlugin {
     public void register(PluginManager pluginManager) {
         getCommand("setup").setExecutor(new SetupCommand());
         getCommand("spawn").setExecutor(new SpawnCommand());
+        getCommand("discord").setExecutor(new DiscordCommand());
         pluginManager.registerEvents(new PlayerConnectionListener(), this);
         pluginManager.registerEvents(new BlockedListeners().run(), this);
         pluginManager.registerEvents(new ScoreboardListener(), this);
