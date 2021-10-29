@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.UUID;
@@ -18,6 +19,8 @@ public class BlockTrails implements Listener {
 
     private static HashMap<UUID, Material> equippedTrail = new HashMap<>();
     private static HashMap<Location, Material> oldBlocks = new HashMap<>();
+
+    private static ArrayList<Material> blockedBlocks = new ArrayList<>();
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
@@ -31,7 +34,7 @@ public class BlockTrails implements Listener {
         }
         Material oldMaterial = block.getType();
         Material materialAbove = player.getLocation().getBlock().getType();
-        if(!oldMaterial.isSolid() || (!materialAbove.isSolid() && materialAbove != Material.AIR && materialAbove != Material.CAVE_AIR)) {
+        if(!oldMaterial.isSolid() || blockedBlocks.contains(materialAbove) || blockedBlocks.contains(oldMaterial) || materialAbove == Material.AIR && materialAbove == Material.CAVE_AIR) {
             return;
         }
         Material material = equippedTrail.get(player.getUniqueId());
@@ -50,6 +53,52 @@ public class BlockTrails implements Listener {
     public static void setEquippedTrail(UUID uuid, Material material) {
         equippedTrail.remove(uuid);
         equippedTrail.put(uuid, material);
+    }
+
+    public static void run() {
+        blockedBlocks.add(Material.GRASS);
+        blockedBlocks.add(Material.TALL_GRASS);
+        blockedBlocks.add(Material.CHEST);
+        blockedBlocks.add(Material.TRAPPED_CHEST);
+
+
+
+        blockedBlocks.add(Material.ACACIA_STAIRS);
+        blockedBlocks.add(Material.ANDESITE_STAIRS);
+        blockedBlocks.add(Material.BIRCH_STAIRS);
+        blockedBlocks.add(Material.BLACKSTONE_STAIRS);
+        blockedBlocks.add(Material.BRICK_STAIRS);
+        blockedBlocks.add(Material.BIRCH_STAIRS);
+        blockedBlocks.add(Material.COBBLESTONE_STAIRS);
+        blockedBlocks.add(Material.CRIMSON_STAIRS);
+        blockedBlocks.add(Material.ACACIA_STAIRS);
+        blockedBlocks.add(Material.END_STONE_BRICK_STAIRS);
+        blockedBlocks.add(Material.GRANITE_STAIRS);
+        blockedBlocks.add(Material.JUNGLE_STAIRS);
+        blockedBlocks.add(Material.MOSSY_COBBLESTONE_STAIRS);
+        blockedBlocks.add(Material.OAK_STAIRS);
+        blockedBlocks.add(Material.QUARTZ_STAIRS);
+        blockedBlocks.add(Material.SANDSTONE_STAIRS);
+        blockedBlocks.add(Material.PRISMARINE_STAIRS);
+
+        blockedBlocks.add(Material.ACACIA_SIGN);
+        blockedBlocks.add(Material.ACACIA_WALL_SIGN);
+        blockedBlocks.add(Material.BIRCH_SIGN);
+        blockedBlocks.add(Material.BIRCH_WALL_SIGN);
+        blockedBlocks.add(Material.CRIMSON_SIGN);
+        blockedBlocks.add(Material.CRIMSON_WALL_SIGN);
+        blockedBlocks.add(Material.DARK_OAK_SIGN);
+        blockedBlocks.add(Material.DARK_OAK_WALL_SIGN);
+        blockedBlocks.add(Material.JUNGLE_SIGN);
+        blockedBlocks.add(Material.JUNGLE_WALL_SIGN);
+        blockedBlocks.add(Material.OAK_SIGN);
+        blockedBlocks.add(Material.OAK_WALL_SIGN);
+        blockedBlocks.add(Material.SPRUCE_SIGN);
+        blockedBlocks.add(Material.SPRUCE_WALL_SIGN);
+        blockedBlocks.add(Material.WARPED_SIGN);
+        blockedBlocks.add(Material.WARPED_WALL_SIGN);
+
+
     }
 
 }

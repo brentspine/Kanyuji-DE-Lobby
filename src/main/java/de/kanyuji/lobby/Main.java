@@ -58,6 +58,7 @@ public class Main extends JavaPlugin {
         Firework.setInventory();
         Inventory.setInventory();
         Inventory.setBlockTrailInventory();
+        BlockTrails.run();
     }
 
     public VisibleHandler getVisibleHandler() {

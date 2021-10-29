@@ -45,10 +45,12 @@ public class Inventory implements Listener {
             if(!(event.getCurrentItem().hasItemMeta())) return;
             if(event.getView().getTitle().equalsIgnoreCase("§b§lInventar")) {
                 handleMainInventoryClick(event.getCurrentItem().getType(), player);
+                event.setCancelled(true);
                 //todo event.getCurrentItem().setItemMeta(new ItemBuilder(event.getCurrentItem()).setLore("§aZum auswählen klicken").build().getItemMeta());
             }
             else if(event.getView().getTitle().equalsIgnoreCase("§b§lBlock Trails")) {
                 handleBlockTrailInventoryClick(event.getCurrentItem().getType(), player);
+                event.setCancelled(true);
             }
         }
     }
