@@ -4,9 +4,7 @@ import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.utils.ClickableMessage;
 import de.kanyuji.lobby.utils.ItemBuilder;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.*;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -29,7 +27,7 @@ public class Profile implements Listener {
             if(event.getItem() == null) return;
             if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
                 if(event.getItem().getType() == Material.PLAYER_HEAD) {
-                    inventory.setItem(13, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(event.getPlayer().getUniqueId()).setDisplayName("§b§lProfil").build());
+                    inventory.setItem(13, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(event.getPlayer().getUniqueId()).setDisplayName("§9Statistiken").setLore("§7Klick hier um deine Statistiken zu sehen").build());
                     event.getPlayer().openInventory(inventory);
                     event.setCancelled(true);
                 }
@@ -45,10 +43,9 @@ public class Profile implements Listener {
             if(event.getClickedInventory() == null) return;
             if(event.getCurrentItem() == null) return;
             if(!(event.getCurrentItem().hasItemMeta())) return;
-            if(event.getView().getTitle().equalsIgnoreCase("§b§lProfile")) {
+            if(event.getView().getTitle().equalsIgnoreCase("§9Profile")) {
                 handleMainInventoryClick(event.getCurrentItem().getType(), player);
                 event.setCancelled(true);
-                //todo event.getCurrentItem().setItemMeta(new ItemBuilder(event.getCurrentItem()).setLore("§aZum auswählen klicken").build().getItemMeta());
             }
         }
     }
@@ -58,12 +55,15 @@ public class Profile implements Listener {
         switch (material) {
             case PAPER:
                 BaseComponent[] component =
-                        new ComponentBuilder("Hier ").color(ChatColor.GRAY).event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://kanyuji.de/discord")).bold(true)
+                        new ComponentBuilder(Main.PREFIX).bold(true)
+                                .append("Hier ").color(ChatColor.GRAY).event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://kanyuji.de/discord")).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT)).bold(true)
                                 .append("geht es zum ").color(ChatColor.GRAY)
                                 .append("Discord").color(ChatColor.RED).create();
 
                 player.spigot().sendMessage(component);
-                //player.spigot().sendMessage(Main.PREFIX + "§7Hier geht es zum " + ClickableMessage.clickableURLComponent("Discord", "https://discord.kanyuji.de"));
+                player.closeInventory();
+                break;
+            case PLAYER_HEAD:
                 break;
             case BEDROCK:
                 player.sendMessage(Main.PREFIX + "Placeholder");
