@@ -11,6 +11,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 
@@ -36,13 +38,14 @@ public class HideListener implements Listener {
                     if(!Main.getInstance().getVisibleHandler().getHider().contains(player)) {
                         Main.getInstance().getVisibleHandler().getHider().add(player);
                     }
+                    player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20, 5));
                     cooldown.add(player);
                     Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
                         @Override
                         public void run() {
                             cooldown.remove(player);
                         }
-                    }, 60);
+                    }, 20);
                 } else if(event.getItem().getType() == Material.RED_DYE) {
                     player.getInventory().setItem(1, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aSpieler §8» §7Angezeigt").build());
                     player.sendMessage(Main.PREFIX + "§aDu siehst nun jeden Spieler wieder");
@@ -50,13 +53,14 @@ public class HideListener implements Listener {
                     if(Main.getInstance().getVisibleHandler().getHider().contains(player)) {
                         Main.getInstance().getVisibleHandler().getHider().remove(player);
                     }
+                    player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20, 5));
                     cooldown.add(player);
                     Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
                         @Override
                         public void run() {
                             cooldown.remove(player);
                         }
-                    }, 60);
+                    }, 20);
                 } else if(event.getItem().getType() == Material.PURPLE_DYE) {
                     player.getInventory().setItem(1, new ItemBuilder(Material.RED_DYE).setDisplayName("§cSpieler §8» §7Versteckt").build());
                     player.sendMessage(Main.PREFIX + "§cDu siehst nun keinen Spieler Mehr");
@@ -64,13 +68,14 @@ public class HideListener implements Listener {
                     if(!Main.getInstance().getVisibleHandler().getHider().contains(player)) {
                         Main.getInstance().getVisibleHandler().getHider().add(player);
                     }
+                    player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20, 5));
                     cooldown.add(player);
                     Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
                         @Override
                         public void run() {
                             cooldown.remove(player);
                         }
-                    }, 60);
+                    }, 20);
                 }
             } else
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§cBitte warte einen Moment!"));
