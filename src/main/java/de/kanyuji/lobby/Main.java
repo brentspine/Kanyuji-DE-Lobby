@@ -10,6 +10,7 @@ import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.listeners.items.Firework;
 import de.kanyuji.lobby.listeners.items.Inventory;
+import de.kanyuji.lobby.utils.MySQL;
 import de.kanyuji.lobby.utils.VisibleHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -24,10 +25,15 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        super.onEnable();
+        MySQL.connect();
         instance = this;
         register(Bukkit.getPluginManager());
         visiblehandler = new VisibleHandler();
+    }
+
+    @Override
+    public void onDisable() {
+        MySQL.disconnect();
     }
 
     public static Main getInstance() {
