@@ -2,6 +2,7 @@ package de.kanyuji.lobby.listeners.items;
 
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
+import de.kanyuji.lobby.mysql.MySQLCoins;
 import de.kanyuji.lobby.utils.ItemBuilder;
 import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Bukkit;
@@ -58,6 +59,7 @@ public class Inventory implements Listener {
     public void handleMainInventoryClick(Material material, Player player) {
         switch (material) {
             case LIME_STAINED_GLASS:
+                blockTrailInventory.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getPoints(player.getUniqueId()) + " Pixel").build());
                 player.openInventory(blockTrailInventory);
                 break;
             case NETHER_STAR:
@@ -117,7 +119,6 @@ public class Inventory implements Listener {
         blockTrailInventory.setItem(34, new ItemBuilder(Material.BEDROCK).setDisplayName("§4Bedrock Trail").setLore("§8Block Trail", "", "§aFür Admins und höhere Teammitglieder", "", "§aRarity: §4Special", "").build());
 
         blockTrailInventory.setItem(48, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
-        blockTrailInventory.setItem(49, new ItemBuilder(Material.EMERALD_BLOCK).setDisplayName("TODO Pixel").build());
         //todo
     }
 

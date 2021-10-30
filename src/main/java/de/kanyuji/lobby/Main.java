@@ -122,13 +122,13 @@ public class Main extends JavaPlugin {
         this.customConfig.addDefault("coin.host", "localhost");
         this.customConfig.addDefault("coin.port", "3306");
         this.customConfig.addDefault("coin.database", "coin");
-        this.customConfig.addDefault("coin.user", "localhost");
+        this.customConfig.addDefault("coin.user", "root");
         this.customConfig.addDefault("coin.password", "password");
 
         this.customConfig.addDefault("playtime.host", "localhost");
         this.customConfig.addDefault("playtime.port", "3306");
         this.customConfig.addDefault("playtime.database", "playtime");
-        this.customConfig.addDefault("playtime.user", "localhost");
+        this.customConfig.addDefault("playtime.user", "root");
         this.customConfig.addDefault("playtime.password", "password");
         this.customConfig.options().copyDefaults(true);
 
