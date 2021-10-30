@@ -51,6 +51,7 @@ public class Main extends JavaPlugin {
         de.kanyuji.lobby.mysql.MySQL.password = getCustomConfig().getString("MySQL.password");
 
         de.kanyuji.lobby.mysql.MySQL.connect();
+        ScoreboardListener.run();
     }
 
     @Override
@@ -84,7 +85,6 @@ public class Main extends JavaPlugin {
         Inventory.setBlockTrailInventory();
         BlockTrails.run();
         Profile.setInventory();
-
     }
 
 

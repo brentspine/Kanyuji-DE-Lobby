@@ -23,7 +23,6 @@ public class MySQL {
                 con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, user, password);
                 Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "Es wurde eine Verbindung mit der Datenbank§8(§c" + database + "§8) §7aufgebaut §8(§c" + host + "§7:§c" + port + "§8)");
             } catch (SQLException var1) {
-                var1.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "Es konnte keine Verbindung mit der Datenbank aufgebaut werden");
             }
         }
