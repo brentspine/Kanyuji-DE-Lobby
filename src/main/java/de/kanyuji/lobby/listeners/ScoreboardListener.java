@@ -1,5 +1,6 @@
 package de.kanyuji.lobby.listeners;
 
+import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.mysql.MySQLCoins;
 import de.kanyuji.lobby.mysql.MySQLPlaytime;
@@ -10,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +21,7 @@ public class ScoreboardListener implements Listener {
 
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
     public static final Map<UUID, Integer> coins = new HashMap<>();
+    public static final Map<UUID, String> playTime = new HashMap<>();
 
     @EventHandler
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
@@ -42,7 +45,7 @@ public class ScoreboardListener implements Listener {
                 "§fRang",
                 "§7Todo", "",
                 "§6Coins",
-                "§7" + MySQLCoins.getPoints(board.getPlayer().getUniqueId()), "",
+                "§7" + coins.get(board.getPlayer().getUniqueId()), "",
                 "§eSpielzeit",
                 "§7" + MySQLPlaytime.getFormattedTime(board.getPlayer().getUniqueId()),
                 "             ");
@@ -53,10 +56,29 @@ public class ScoreboardListener implements Listener {
         coins.put(uuid, MySQLCoins.getPoints(uuid));
     }
 
+    public static void updatePlayTime(UUID uuid) {
+        playTime.put(uuid, MySQLPlaytime.getFormattedTime(uuid));
+    }
+
     public static void run() {
         for(Player player : Bukkit.getOnlinePlayers()) {
             coins.put(player.getUniqueId(), MySQLCoins.getPoints(player.getUniqueId()));
         }
+        executeEveryMinute();
+    }
+
+
+    private static void executeEveryMinute() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for(Player current : Bukkit.getOnlinePlayers()) {
+                    updatePlayTime(current.getUniqueId());
+                    updateCoins(current.getUniqueId());
+                }
+                Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "Added 1 Minute Playtime to Online Players (" + Bukkit.getOnlinePlayers().size() + ")");
+            }
+        }.runTaskTimer(Main.getInstance(), 20*30, 20*30);
     }
 
 }

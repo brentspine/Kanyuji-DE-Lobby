@@ -46,7 +46,11 @@ public class MySQLPlaytime {
     public static boolean isUserExisting(UUID uuid) {
         //Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "isUserExisting");
         try {
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT minutesPlayed FROM playtime WHERE UUID = ?");
+            if(!isConnected()) {
+                Bukkit.getConsoleSender().sendMessage("not");
+                return false;
+            }
+            PreparedStatement ps = con.prepareStatement("SELECT minutesPlayed FROM playtime WHERE UUID = ?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             return rs.next();
@@ -61,7 +65,7 @@ public class MySQLPlaytime {
         if(!isUserExisting) {
             try {
                 PreparedStatement ps;
-                ps = MySQL.getConnection().prepareStatement("INSERT INTO playtime (UUID, minutesPlayed) VALUES (?,?)");
+                ps = con.prepareStatement("INSERT INTO playtime (UUID, minutesPlayed) VALUES (?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setInt(2, 0);
                 ps.executeUpdate();
@@ -78,7 +82,7 @@ public class MySQLPlaytime {
             return 0;
         }
         try {
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT minutesPlayed FROM playtime WHERE uuid = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT minutesPlayed FROM playtime WHERE uuid = ?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -105,12 +109,12 @@ public class MySQLPlaytime {
             hoursPlayed = hoursPlayed - 24;
         }
         if(daysPlayed > 0) {
-            return daysPlayed + "days " + hoursPlayed + " hours";
+            return daysPlayed + "Days " + hoursPlayed + " Hours";
         }
         else if(hoursPlayed > 0) {
-            return hoursPlayed + " hours";
+            return hoursPlayed + " Hours";
         } else
-            return minutesPlayed + " minutes";
+            return minutesPlayed + " Minutes";
 
     }
 
@@ -120,7 +124,7 @@ public class MySQLPlaytime {
         int minutesPlayed = getMinutesPlayed(uuid);
         try {
             PreparedStatement ps;
-            ps = MySQL.getConnection().prepareStatement("UPDATE playtime SET minutesPlayed = ? WHERE UUID = ?");
+            ps = con.prepareStatement("UPDATE playtime SET minutesPlayed = ? WHERE UUID = ?");
             ps.setInt(1, minutesPlayed + amount);
             ps.setString(2, uuid.toString());
             ps.executeUpdate();
@@ -136,7 +140,7 @@ public class MySQLPlaytime {
         }
         try {
             PreparedStatement ps;
-            ps = MySQL.getConnection().prepareStatement("DELETE FROM playtime WHERE UUID = ?");
+            ps = con.prepareStatement("DELETE FROM playtime WHERE UUID = ?");
             ps.setString(1, uuid.toString());
             ps.executeUpdate();
             return true;

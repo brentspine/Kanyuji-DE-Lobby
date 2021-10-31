@@ -1,8 +1,10 @@
 package de.kanyuji.lobby.listeners;
 
 import de.kanyuji.lobby.Main;
+import de.kanyuji.lobby.mysql.MySQLCoins;
 import de.kanyuji.lobby.utils.ItemBuilder;
 import de.kanyuji.lobby.utils.LocationUtil;
+import de.kanyuji.lobby.utils.MySQL;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,7 +19,6 @@ public class PlayerConnectionListener implements Listener {
     @EventHandler
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        ScoreboardListener.updateCoins(player.getUniqueId());
         player.getInventory().clear();
         player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
         player.setFoodLevel(20);
@@ -30,6 +31,8 @@ public class PlayerConnectionListener implements Listener {
         player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§b§lProfil").build());
         //nick tool wird vom nick plugin ins inventar gelegt || Command block zum starten lege ich später ins inventar!!!
         //todo join animation(lass mich das machen)
+        ScoreboardListener.updateCoins(player.getUniqueId());
+        ScoreboardListener.updatePlayTime(player.getUniqueId());
     }
 
     @EventHandler

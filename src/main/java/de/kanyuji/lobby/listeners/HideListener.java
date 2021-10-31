@@ -40,7 +40,7 @@ public class HideListener implements Listener {
                         Main.getInstance().getVisibleHandler().getHider().add(player);
                     }
                     player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20, 5));
-                    player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_ELYTRA, 1, 1);
+                    player.playSound(player.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, 1, 1);
                     cooldown.add(player);
                     Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
                         @Override
@@ -56,7 +56,7 @@ public class HideListener implements Listener {
                         Main.getInstance().getVisibleHandler().getHider().remove(player);
                     }
                     player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20, 5));
-                    player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_ELYTRA, 1, 1);
+                    player.playSound(player.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, 1, 1);
                     cooldown.add(player);
                     Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
                         @Override
@@ -72,7 +72,7 @@ public class HideListener implements Listener {
                         Main.getInstance().getVisibleHandler().getHider().add(player);
                     }
                     player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20, 5));
-                    player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_ELYTRA, 1, 1);
+                    player.playSound(player.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, 1, 1);
                     cooldown.add(player);
                     Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
                         @Override
