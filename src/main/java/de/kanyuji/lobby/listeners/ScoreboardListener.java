@@ -47,16 +47,18 @@ public class ScoreboardListener implements Listener {
                 "§6Coins",
                 "§7" + coins.get(board.getPlayer().getUniqueId()), "",
                 "§eSpielzeit",
-                "§7" + MySQLPlaytime.getFormattedTime(board.getPlayer().getUniqueId()),
+                "§7" + playTime.get(board.getPlayer().getUniqueId()),
                 "             ");
     }
 
 
     public static void updateCoins(UUID uuid) {
+        coins.remove(uuid);
         coins.put(uuid, MySQLCoins.getPoints(uuid));
     }
 
     public static void updatePlayTime(UUID uuid) {
+        playTime.remove(uuid);
         playTime.put(uuid, MySQLPlaytime.getFormattedTime(uuid));
     }
 
@@ -76,7 +78,6 @@ public class ScoreboardListener implements Listener {
                     updatePlayTime(current.getUniqueId());
                     updateCoins(current.getUniqueId());
                 }
-                Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "Added 1 Minute Playtime to Online Players (" + Bukkit.getOnlinePlayers().size() + ")");
             }
         }.runTaskTimer(Main.getInstance(), 20*30, 20*30);
     }
