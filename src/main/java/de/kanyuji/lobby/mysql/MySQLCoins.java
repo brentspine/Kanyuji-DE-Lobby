@@ -146,7 +146,7 @@ public class MySQLCoins {
         PreparedStatement ps;
         if (isUserExisting(uuid)) {
             try {
-                ps = MySQL.getConnection().prepareStatement("UPDATE pixel SET Wert = ? WHERE UUID = ?");
+                ps = MySQL.getConnection().prepareStatement("UPDATE pixel SET Coins = ? WHERE UUID = ?");
                 ps.setInt(1, 0);
                 ps.setString(2, uuid.toString());
                 ps.executeUpdate();
