@@ -86,11 +86,6 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new HideListener(), this);
         pluginManager.registerEvents(new BlockTrails(), this);
         pluginManager.registerEvents(new Profile(), this);
-        getServer().getScheduler().runTaskTimer(this, () -> {
-            for (FastBoard board : ScoreboardListener.boards.values()) {
-                ScoreboardListener.updateBoard(board);
-            }
-        }, 0, 20);
         pluginManager.registerEvents(new Firework(), this);
         Firework.setInventory();
         Inventory.setInventory();

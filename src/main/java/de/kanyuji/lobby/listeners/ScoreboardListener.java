@@ -78,6 +78,9 @@ public class ScoreboardListener implements Listener {
                     updatePlayTime(current.getUniqueId());
                     updateCoins(current.getUniqueId());
                 }
+                for (FastBoard board : ScoreboardListener.boards.values()) {
+                    ScoreboardListener.updateBoard(board);
+                }
             }
         }.runTaskTimer(Main.getInstance(), 20*30, 20*30);
     }
