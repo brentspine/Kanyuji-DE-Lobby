@@ -109,7 +109,7 @@ public class MySQLPlaytime {
             hoursPlayed = hoursPlayed - 24;
         }
         if(daysPlayed > 0) {
-            return daysPlayed + "Days " + hoursPlayed + " Hours";
+            return daysPlayed + " Days " + hoursPlayed + " Hours";
         }
         else if(hoursPlayed > 0) {
             return hoursPlayed + " Hours";
