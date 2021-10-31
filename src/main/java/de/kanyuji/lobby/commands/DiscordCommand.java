@@ -23,8 +23,8 @@ public class DiscordCommand implements CommandExecutor {
         BaseComponent[] component =
                 new ComponentBuilder(Main.PREFIX).bold(true)
                         .append("Hier ").color(ChatColor.GRAY).event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://kanyuji.de/discord")).bold(true)
-                        .append("geht es zum ").color(ChatColor.GRAY)
-                        .append("Discord").color(ChatColor.RED).create();
+                        .append("geht es zum ").color(ChatColor.GRAY).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, ""))
+                        .append("[Discord]").color(ChatColor.RED).event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://kanyuji.de/discord")).create();
 
         player.spigot().sendMessage(component);
         return false;

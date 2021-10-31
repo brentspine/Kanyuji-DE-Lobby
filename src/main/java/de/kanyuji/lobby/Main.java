@@ -32,6 +32,7 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
     public static final String PREFIX = "§b§lLobby §8» §7";
+    public static final String NOPERM = PREFIX + "§cDazu hast du keine Berechtigungen!";
     private VisibleHandler visiblehandler;
 
     private File customConfigFile;
@@ -67,6 +68,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         de.kanyuji.lobby.mysql.MySQL.disconnect();
+        MySQLPlaytime.disconnect();
     }
 
     public static Main getInstance() {
