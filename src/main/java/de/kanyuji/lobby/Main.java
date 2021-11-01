@@ -90,13 +90,14 @@ public class Main extends JavaPlugin {
             for (FastBoard board : ScoreboardListener.boards.values()) {
                 ScoreboardListener.updateBoard(board);
             }
-        }, 0, 20*30);
+        }, 0, 20);
         pluginManager.registerEvents(new Firework(), this);
         Firework.setInventory();
         Inventory.setInventory();
         Inventory.setBlockTrailInventory();
         BlockTrails.run();
         Profile.setInventory();
+        Profile.setSettingsInventory();
     }
 
 

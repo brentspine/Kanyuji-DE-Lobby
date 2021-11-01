@@ -20,6 +20,7 @@ import java.awt.*;
 public class Profile implements Listener {
 
     private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lProfile");
+    private static org.bukkit.inventory.Inventory settingsInventory = Bukkit.createInventory(null, 3*9, "§b§lSettings");
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -64,7 +65,7 @@ public class Profile implements Listener {
                 player.closeInventory();
                 break;
             case PLAYER_HEAD:
-
+                player.openInventory(settingsInventory);
                 break;
             case BEDROCK:
                 player.sendMessage(Main.PREFIX + "Placeholder");
@@ -73,9 +74,37 @@ public class Profile implements Listener {
     }
 
 
+    public void handleSettingsInventory(Material material, Player player) {
+        switch (material) {
+            case PAPER:
+                break;
+            case BARRIER:
+
+        }
+    }
+
     public static void setInventory() {
         inventory.setItem(10, new ItemBuilder(Material.REPEATER).setDisplayName("§9Einstellungen").setLore("§7Liest das irgendjemand?").build());
         inventory.setItem(16, new ItemBuilder(Material.PAPER).setDisplayName("§9Discord").setLore("§7Giveaways, Updates und mehr!").build());
+    }
+
+    public static void setSettingsInventory() {
+        settingsInventory.setItem(2, new ItemBuilder(Material.PAPER).setDisplayName("§aChat Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").build());
+        settingsInventory.setItem(3, new ItemBuilder(Material.BARRIER).setDisplayName("§aPrivatsphäre Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").build());
+        settingsInventory.setItem(5, new ItemBuilder(Material.NETHER_STAR).setDisplayName("§aLobby Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").build());
+        settingsInventory.setItem(6, new ItemBuilder(Material.COBWEB).setDisplayName("§aStatistik Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").build());
+
+        settingsInventory.setItem(11, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").build());
+        settingsInventory.setItem(12, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").build());
+        settingsInventory.setItem(14, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").build());
+        settingsInventory.setItem(15, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").build());
+
+        settingsInventory.setItem(29, new ItemBuilder(Material.FILLED_MAP).setDisplayName("§aUpdate Notifications").setLore("&7Stellt ein ob du bei Updates eine", "Nachricht mit Informationen erhälst").build());
+        settingsInventory.setItem(31, new ItemBuilder(Material.RED_BED).setDisplayName("§aAutomatische Warteschlange").setLore("&7Schaltet um, ob du nach einem Spiel", "automatisch zum nächsten weitergeleitet wirst").build());
+        settingsInventory.setItem(40, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").build());
+        settingsInventory.setItem(42, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").build());
+
+        settingsInventory.setItem(49, new ItemBuilder(Material.ARROW).setDisplayName("Zurück").build());
     }
 
 }
