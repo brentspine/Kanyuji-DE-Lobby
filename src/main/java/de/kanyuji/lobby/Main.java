@@ -36,8 +36,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        createCustomConfig();
-        setDefaults();
 
         MySQL.connect();
         instance = this;
@@ -77,54 +75,6 @@ public class Main extends JavaPlugin {
         Inv.setBlockTrailInventory();
         BlockTrails.run();
     }
-
-
-    private void createCustomConfig() {
-        this.customConfigFile = new File(this.getDataFolder(), "mysql.yml");
-        if (!this.getDataFolder().exists()) {
-            this.getDataFolder().mkdir();
-        }
-
-        if (!this.customConfigFile.exists()) {
-            try {
-                this.customConfigFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Bukkit.getConsoleSender().sendMessage("§c§lCoins §8| §7Die §cmysql.yml §7wurde erstellt");
-        }
-
-        new YamlConfiguration();
-        this.customConfig = YamlConfiguration.loadConfiguration(this.customConfigFile);
-    }
-
-    public void setDefaults() {
-        this.customConfig.addDefault("coin.host", "localhost");
-        this.customConfig.addDefault("coin.port", "3306");
-        this.customConfig.addDefault("coin.database", "coin");
-        this.customConfig.addDefault("coin.user", "root");
-        this.customConfig.addDefault("coin.password", "password");
-
-        this.customConfig.addDefault("playtime.host", "localhost");
-        this.customConfig.addDefault("playtime.port", "3306");
-        this.customConfig.addDefault("playtime.database", "playtime");
-        this.customConfig.addDefault("playtime.user", "root");
-        this.customConfig.addDefault("playtime.password", "password");
-        this.customConfig.options().copyDefaults(true);
-
-        try {
-            this.customConfig.save(this.customConfigFile);
-        } catch (IOException var2) {
-            var2.printStackTrace();
-        }
-
-    }
-
-    public FileConfiguration getCustomConfig() {
-        return this.customConfig;
-    }
-
 
     public VisibleHandler getVisibleHandler() {
         return visiblehandler;
