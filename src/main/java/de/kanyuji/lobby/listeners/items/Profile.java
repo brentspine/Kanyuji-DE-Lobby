@@ -99,7 +99,7 @@ public class Profile implements Listener {
         settingsInventory.setItem(14, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").build());
         settingsInventory.setItem(15, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").build());
 
-        settingsInventory.setItem(29, new ItemBuilder(Material.FILLED_MAP).setDisplayName("§aUpdate Notifications").setLore("&7Stellt ein ob du bei Updates eine", "Nachricht mit Informationen erhälst").build());
+        settingsInventory.setItem(29, new ItemBuilder(Material.MAP).setDisplayName("§aUpdate Notifications").setLore("&7Stellt ein ob du bei Updates eine", "Nachricht mit Informationen erhälst").build());
         settingsInventory.setItem(31, new ItemBuilder(Material.RED_BED).setDisplayName("§aAutomatische Warteschlange").setLore("&7Schaltet um, ob du nach einem Spiel", "automatisch zum nächsten weitergeleitet wirst").build());
         settingsInventory.setItem(40, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").build());
         settingsInventory.setItem(42, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").build());
