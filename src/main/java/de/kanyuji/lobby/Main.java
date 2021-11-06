@@ -72,7 +72,6 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new Firework(), this);
         Firework.setInventory();
         Inv.setInventory();
-        Inv.setBlockTrailInventory();
         BlockTrails.run();
     }
 
