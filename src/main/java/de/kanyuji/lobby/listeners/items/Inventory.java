@@ -2,21 +2,15 @@ package de.kanyuji.lobby.listeners.items;
 
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
-import de.kanyuji.lobby.mysql.MySQLCoins;
 import de.kanyuji.lobby.utils.ItemBuilder;
-import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
 
 public class Inventory implements Listener {
 
@@ -59,7 +53,7 @@ public class Inventory implements Listener {
     public void handleMainInventoryClick(Material material, Player player) {
         switch (material) {
             case LIME_STAINED_GLASS:
-                blockTrailInventory.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getPoints(player.getUniqueId()) + " Pixel").build());
+                //blockTrailInventory.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getPoints(player.getUniqueId()) + " Pixel").build());
                 player.openInventory(blockTrailInventory);
                 break;
             case NETHER_STAR:

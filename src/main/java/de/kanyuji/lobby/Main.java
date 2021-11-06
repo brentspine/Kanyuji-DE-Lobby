@@ -12,12 +12,10 @@ import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.listeners.items.Firework;
 import de.kanyuji.lobby.listeners.items.Inventory;
 import de.kanyuji.lobby.listeners.items.Profile;
-import de.kanyuji.lobby.mysql.MySQLPlaytime;
+import de.kanyuji.lobby.utils.MySQLUtil;
 import de.kanyuji.lobby.utils.MySQL;
 import de.kanyuji.lobby.utils.VisibleHandler;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.Statistic;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -25,8 +23,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class Main extends JavaPlugin {
 
@@ -43,32 +39,24 @@ public class Main extends JavaPlugin {
         createCustomConfig();
         setDefaults();
 
-        //MySQL.connect();
+        MySQL.connect();
         instance = this;
         register(Bukkit.getPluginManager());
         visiblehandler = new VisibleHandler();
 
-        de.kanyuji.lobby.mysql.MySQL.host = getCustomConfig().getString("coin.host");
-        de.kanyuji.lobby.mysql.MySQL.port = getCustomConfig().getString("coin.port");
-        de.kanyuji.lobby.mysql.MySQL.database = getCustomConfig().getString("coin.database");
-        de.kanyuji.lobby.mysql.MySQL.user = getCustomConfig().getString("coin.user");
-        de.kanyuji.lobby.mysql.MySQL.password = getCustomConfig().getString("coin.password");
-
-        MySQLPlaytime.host = getCustomConfig().getString("playtime.host");
-        MySQLPlaytime.port = getCustomConfig().getString("playtime.port");
-        MySQLPlaytime.database = getCustomConfig().getString("playtime.database");
-        MySQLPlaytime.user = getCustomConfig().getString("playtime.user");
-        MySQLPlaytime.password = getCustomConfig().getString("playtime.password");
-
-        de.kanyuji.lobby.mysql.MySQL.connect();
-        MySQLPlaytime.connect();
+        MySQLUtil.host = getCustomConfig().getString("playtime.host");
+        MySQLUtil.port = getCustomConfig().getString("playtime.port");
+        MySQLUtil.database = getCustomConfig().getString("playtime.database");
+        MySQLUtil.user = getCustomConfig().getString("playtime.user");
+        MySQLUtil.password = getCustomConfig().getString("playtime.password");
+        MySQLUtil.connect();
         ScoreboardListener.run();
     }
 
     @Override
     public void onDisable() {
-        de.kanyuji.lobby.mysql.MySQL.disconnect();
-        MySQLPlaytime.disconnect();
+        MySQL.disconnect();
+        MySQLUtil.disconnect();
     }
 
     public static Main getInstance() {

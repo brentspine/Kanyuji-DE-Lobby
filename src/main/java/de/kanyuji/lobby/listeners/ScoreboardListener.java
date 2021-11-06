@@ -2,8 +2,7 @@ package de.kanyuji.lobby.listeners;
 
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.fastboard.FastBoard;
-import de.kanyuji.lobby.mysql.MySQLCoins;
-import de.kanyuji.lobby.mysql.MySQLPlaytime;
+import de.kanyuji.lobby.utils.MySQLUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -54,17 +53,17 @@ public class ScoreboardListener implements Listener {
 
     public static void updateCoins(UUID uuid) {
         coins.remove(uuid);
-        coins.put(uuid, MySQLCoins.getPoints(uuid));
+        //coins.put(uuid, MySQLCoins.getPoints(uuid));
     }
 
     public static void updatePlayTime(UUID uuid) {
         playTime.remove(uuid);
-        playTime.put(uuid, MySQLPlaytime.getFormattedTime(uuid));
+        playTime.put(uuid, MySQLUtil.getFormattedTime(uuid));
     }
 
     public static void run() {
         for(Player player : Bukkit.getOnlinePlayers()) {
-            coins.put(player.getUniqueId(), MySQLCoins.getPoints(player.getUniqueId()));
+            //coins.put(player.getUniqueId(), MySQLCoins.getPoints(player.getUniqueId()));
         }
         executeEveryMinute();
     }
