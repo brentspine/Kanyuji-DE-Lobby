@@ -10,7 +10,7 @@ import de.kanyuji.lobby.listeners.ScoreboardListener;
 import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.listeners.items.Firework;
-import de.kanyuji.lobby.listeners.items.Inventory;
+import de.kanyuji.lobby.listeners.items.Inv;
 import de.kanyuji.lobby.listeners.items.Profile;
 import de.kanyuji.lobby.utils.MySQLUtil;
 import de.kanyuji.lobby.utils.MySQL;
@@ -43,20 +43,12 @@ public class Main extends JavaPlugin {
         instance = this;
         register(Bukkit.getPluginManager());
         visiblehandler = new VisibleHandler();
-
-        MySQLUtil.host = getCustomConfig().getString("playtime.host");
-        MySQLUtil.port = getCustomConfig().getString("playtime.port");
-        MySQLUtil.database = getCustomConfig().getString("playtime.database");
-        MySQLUtil.user = getCustomConfig().getString("playtime.user");
-        MySQLUtil.password = getCustomConfig().getString("playtime.password");
-        MySQLUtil.connect();
         ScoreboardListener.run();
     }
 
     @Override
     public void onDisable() {
         MySQL.disconnect();
-        MySQLUtil.disconnect();
     }
 
     public static Main getInstance() {
@@ -70,7 +62,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new PlayerConnectionListener(), this);
         pluginManager.registerEvents(new BlockedListeners().run(), this);
         pluginManager.registerEvents(new ScoreboardListener(), this);
-        pluginManager.registerEvents(new Inventory(), this);
+        pluginManager.registerEvents(new Inv(), this);
         pluginManager.registerEvents(new HideListener(), this);
         pluginManager.registerEvents(new BlockTrails(), this);
         pluginManager.registerEvents(new Profile(), this);
@@ -81,11 +73,9 @@ public class Main extends JavaPlugin {
         }, 0, 20);
         pluginManager.registerEvents(new Firework(), this);
         Firework.setInventory();
-        Inventory.setInventory();
-        Inventory.setBlockTrailInventory();
+        Inv.setInventory();
+        Inv.setBlockTrailInventory();
         BlockTrails.run();
-        Profile.setInventory();
-        Profile.setSettingsInventory();
     }
 
 

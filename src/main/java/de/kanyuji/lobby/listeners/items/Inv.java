@@ -12,7 +12,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class Inventory implements Listener {
+public class Inv implements Listener {
+
+    public void openGUI(Player player) {
+        org.bukkit.inventory.Inventory inv2 = Bukkit.createInventory(null, 3*9, "Test");
+        inv2.setItem(1, new ItemBuilder(Material.SKELETON_SKULL).setSkullOwner(player));
+        player.openInventory(inv2);
+    }
 
     private static org.bukkit.inventory.Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lInventar");
     private static org.bukkit.inventory.Inventory blockTrailInventory = Bukkit.createInventory(null, 6*9, "§b§lBlock Trails");
@@ -26,7 +32,6 @@ public class Inventory implements Listener {
                     event.getPlayer().openInventory(inventory);
                     event.setCancelled(true);
                 }
-
             }
         }
     }
