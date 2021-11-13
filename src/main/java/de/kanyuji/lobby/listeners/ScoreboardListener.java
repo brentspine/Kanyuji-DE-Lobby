@@ -63,7 +63,7 @@ public class ScoreboardListener implements Listener {
 
     public static void run() {
         for(Player player : Bukkit.getOnlinePlayers()) {
-            //coins.put(player.getUniqueId(), MySQLCoins.getPoints(player.getUniqueId()));
+
         }
         executeEveryMinute();
     }
