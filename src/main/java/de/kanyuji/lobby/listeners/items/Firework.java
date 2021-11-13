@@ -42,26 +42,54 @@ public class Firework implements Listener {
             event.setCancelled(true);
             switch (event.getCurrentItem().getType()) {
                 case FIRE_CHARGE:
-                    player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
                     player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
                     break;
-                case BEDROCK:
-                    player.sendMessage(Main.PREFIX + "Placeholder");
+                case FIREWORK_ROCKET:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.EVENT").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
+                case STICK:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.TTT").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
+                case WATER_BUCKET:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.SURF").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
+                case CRAFTING_TABLE:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.BINGO").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
+                case CLAY_BALL:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.SWITCH").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
+                case ELYTRA:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.ELYTRAWARS").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
+                case DIAMOND_BOOTS:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.TRYJUMP").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
+                case BARRIER:
+                    player.sendMessage(Main.PREFIX + "Dieser Platz ist noch nicht belegt.");
                     break;
             }
         }
     }
 
     public static void setInventory() {
-        inventory.setItem(3, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
-        inventory.setItem(5, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
-        inventory.setItem(10, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
-        inventory.setItem(16, new ItemBuilder(Material.BEDROCK).setDisplayName("§7Coming Soon").build());
+        inventory.setItem(3, new ItemBuilder(Material.STICK).setDisplayName("§4§lTTT").setLore("§4Spieler §8» §7Todo").build());
+        inventory.setItem(5, new ItemBuilder(Material.WATER_BUCKET).setDisplayName("§3§lSURF").setLore("§4Spieler §8» §7Todo").build());
+        inventory.setItem(10, new ItemBuilder(Material.CRAFTING_TABLE).setDisplayName("§9§lBINGO").setLore("§4Spieler §8» §7Todo").build());
+        inventory.setItem(16, new ItemBuilder(Material.LAVA_BUCKET).setDisplayName("§2§lCHALLENGES").setLore("§4Spieler §8» §7Todo").build());
         inventory.setItem(22, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§e§lEvent").build());
         inventory.setItem(31, new ItemBuilder(Material.FIRE_CHARGE).setDisplayName("§7Spawn").build());
-        inventory.setItem(37, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
-        inventory.setItem(43, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
-        inventory.setItem(48, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
-        inventory.setItem(50, new ItemBuilder(Material.BEDROCK).setDisplayName("§9Coming Soon").build());
+        inventory.setItem(37, new ItemBuilder(Material.CLAY_BALL).setDisplayName("§c§lSWITCH").build());
+        inventory.setItem(43, new ItemBuilder(Material.DIAMOND_BOOTS).setDisplayName("§b§lTRYJUMP").build());
+        inventory.setItem(48, new ItemBuilder(Material.ELYTRA).setDisplayName("§a§lELYTRAWARS").build());
+        inventory.setItem(50, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming Soon").build());
     }
 }

@@ -22,12 +22,10 @@ public class SetupCommand implements CommandExecutor {
         if(args.length <= 0) {
             player.sendMessage(Main.PREFIX + "Verwendung: /" + label + " [spawn]");
             return true;
+        } else {
+            new LocationUtil(Main.getInstance(),  player.getLocation(), "locs." + args[0].toUpperCase()).saveLocation();
         }
-        if (args[0].equalsIgnoreCase("spawn")) {
-            player.sendMessage(Main.PREFIX + "Der Spawn wurde gesetzt!");
-            new LocationUtil(Main.getInstance(), player.getLocation(), "spawn").saveLocation();
-            return true;
-        }
+
         return true;
     }
 
