@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -136,6 +137,34 @@ public class ItemBuilder {
             im.setColor(color);
             is.setItemMeta(im);
         }catch(ClassCastException expected){}
+        return this;
+    }
+
+    public ItemBuilder addFlags(ItemFlag... flags) {
+        ItemMeta im = is.getItemMeta();
+        for(ItemFlag current : flags) {
+            im.addItemFlags(current);
+        }
+        is.setItemMeta(im);
+        return this;
+    }
+
+    public ItemBuilder removeFlags(ItemFlag... flags) {
+        ItemMeta im = is.getItemMeta();
+        for(ItemFlag current : flags) {
+            im.removeItemFlags(current);
+        }
+        is.setItemMeta(im);
+        return this;
+    }
+
+    public ItemBuilder hideMetaTags(boolean hide) {
+        ItemMeta im = is.getItemMeta();
+        if(hide)
+            im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DYE, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_POTION_EFFECTS, ItemFlag.HIDE_UNBREAKABLE);
+        else
+            im.removeItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DYE, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_POTION_EFFECTS, ItemFlag.HIDE_UNBREAKABLE);
+        is.setItemMeta(im);
         return this;
     }
 

@@ -13,6 +13,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 
 public class Firework implements Listener {
 
@@ -93,7 +94,7 @@ public class Firework implements Listener {
         inventory.setItem(31, new ItemBuilder(Material.FIRE_CHARGE).setDisplayName("§7Spawn").build());
         inventory.setItem(37, new ItemBuilder(Material.CLAY_BALL).setDisplayName("§c§lSWITCH").setLore("§cSwitch §7ist eine Mischung aus verschiedenen FFA Modi, die immer in einem bestimmten Zeitabstand wechseln").build());
         inventory.setItem(43, new ItemBuilder(Material.DIAMOND_BOOTS).setDisplayName("§b§lTRYJUMP").setLore("§bTryJump §7ist ein Modus, in dem du Punkte durch Jump and Runs verdienst", "§7und dir damit am Ende Ausrüstung käufst die du in einem PvP Deathmatch einsetzt.").build());
-        inventory.setItem(48, new ItemBuilder(Material.ELYTRA).setDisplayName("§a§lELYTRAWARS").setLore("§aElytrawars §7ist ein epischer Battle Royale Spielmodus, der nur in der Luft stattfindet.", "§7Achte darauf dass du genügend Raketen hast und sei am Ende der einzige Überlebende").build());
+        inventory.setItem(48, new ItemBuilder(Material.ELYTRA).setDisplayName("§a§lELYTRAWARS").setLore("§aElytrawars §7ist ein epischer Battle Royale Spielmodus, der nur in der Luft stattfindet.", "§7Achte darauf dass du genügend Raketen hast und sei am Ende der einzige Überlebende").hideMetaTags(true).build());
         inventory.setItem(50, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming Soon").build());
     }
 }
