@@ -17,7 +17,7 @@ public class PlayerConnectionListener implements Listener {
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.getInventory().clear();
-        player.teleport(new LocationUtil(Main.getInstance(), "loc.SPAWN").getLocation());
+        player.teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
         player.setFoodLevel(20);
         player.setMaxHealth(6);
         player.setGameMode(GameMode.SURVIVAL);

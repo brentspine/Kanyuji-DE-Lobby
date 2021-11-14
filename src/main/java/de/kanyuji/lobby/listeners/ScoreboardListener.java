@@ -44,9 +44,9 @@ public class ScoreboardListener implements Listener {
                 "§fRang",
                 "§7Todo", "",
                 "§6Coins",
-                "§7" + coins.get(board.getPlayer().getUniqueId()), "",
+                "§7" + "debug", "",
                 "§eSpielzeit",
-                "§7" + playTime.get(board.getPlayer().getUniqueId()),
+                "§7" + "debug",
                 "             ");
     }
 
@@ -61,24 +61,17 @@ public class ScoreboardListener implements Listener {
         playTime.put(uuid, MySQLUtil.getFormattedTime(uuid));
     }
 
-    public static void run() {
-        for(Player player : Bukkit.getOnlinePlayers()) {
 
-        }
-        executeEveryMinute();
-    }
-
-
-    private static void executeEveryMinute() {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                for(Player current : Bukkit.getOnlinePlayers()) {
-                    updatePlayTime(current.getUniqueId());
-                    updateCoins(current.getUniqueId());
-                }
-            }
-        }.runTaskTimer(Main.getInstance(), 20*30, 20*30);
-    }
+    //private static void executeEveryMinute() {
+    //   new BukkitRunnable() {
+    //        @Override
+    //        public void run() {
+    //            for(Player current : Bukkit.getOnlinePlayers()) {
+    //                updatePlayTime(current.getUniqueId());
+    //                updateCoins(current.getUniqueId());
+    //            }
+    //        }
+    //    }.runTaskTimer(Main.getInstance(), 20*30, 20*30);
+    //}
 
 }
