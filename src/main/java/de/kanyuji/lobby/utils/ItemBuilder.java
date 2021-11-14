@@ -39,14 +39,17 @@ public class ItemBuilder {
         is.setItemMeta(im);
         return this;
     }
+
     public ItemBuilder addUnsafeEnchantment(Enchantment ench, int level){
         is.addUnsafeEnchantment(ench, level);
         return this;
     }
+
     public ItemBuilder removeEnchantment(Enchantment ench){
         is.removeEnchantment(ench);
         return this;
     }
+
     public ItemBuilder setSkullOwner(UUID owner){
         try{
             SkullMeta im = (SkullMeta)is.getItemMeta();
@@ -56,32 +59,38 @@ public class ItemBuilder {
         }catch(ClassCastException expected){}
         return this;
     }
+
     public ItemBuilder setEnchantment(Enchantment ench, int level){
         ItemMeta im = is.getItemMeta();
         im.addEnchant(ench, level, true);
         is.setItemMeta(im);
         return this;
     }
+
     public ItemBuilder setEnchantments(Map<Enchantment, Integer> enchantments){
         is.addEnchantments(enchantments);
         return this;
     }
+
     public ItemBuilder setInfinityDurability(){
         is.setDurability(Short.MAX_VALUE);
         return this;
     }
+
     public ItemBuilder setLore(String... lore){
         ItemMeta im = is.getItemMeta();
         im.setLore(Arrays.asList(lore));
         is.setItemMeta(im);
         return this;
     }
+
     public ItemBuilder setLore(List<String> lore) {
         ItemMeta im = is.getItemMeta();
         im.setLore(lore);
         is.setItemMeta(im);
         return this;
     }
+
     public ItemBuilder removeLoreLine(String line){
         ItemMeta im = is.getItemMeta();
         List<String> lore = new ArrayList<>(im.getLore());
@@ -91,6 +100,7 @@ public class ItemBuilder {
         is.setItemMeta(im);
         return this;
     }
+
     public ItemBuilder removeLoreLine(int index){
         ItemMeta im = is.getItemMeta();
         List<String> lore = new ArrayList<>(im.getLore());
@@ -100,6 +110,7 @@ public class ItemBuilder {
         is.setItemMeta(im);
         return this;
     }
+
     public ItemBuilder addLoreLine(String line){
         ItemMeta im = is.getItemMeta();
         List<String> lore = new ArrayList<>();
@@ -109,6 +120,7 @@ public class ItemBuilder {
         is.setItemMeta(im);
         return this;
     }
+
     public ItemBuilder addLoreLine(String line, int pos){
         ItemMeta im = is.getItemMeta();
         List<String> lore = new ArrayList<>(im.getLore());
@@ -126,6 +138,7 @@ public class ItemBuilder {
         }catch(ClassCastException expected){}
         return this;
     }
+
     public ItemStack build(){
         return is;
     }
