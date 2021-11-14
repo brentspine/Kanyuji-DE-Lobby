@@ -41,7 +41,6 @@ public class Main extends JavaPlugin {
         instance = this;
         register(Bukkit.getPluginManager());
         visiblehandler = new VisibleHandler();
-        ScoreboardListener.run();
     }
 
     @Override
