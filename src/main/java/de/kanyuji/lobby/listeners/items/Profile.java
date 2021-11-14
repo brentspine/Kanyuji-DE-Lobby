@@ -16,14 +16,6 @@ import org.bukkit.inventory.Inventory;
 
 public class Profile implements Listener {
 
-    public void openProfileGUI(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lProfile");
-        inventory.setItem(10, new ItemBuilder(Material.REPEATER).setDisplayName("§9Einstellungen").setLore("§7Hier kannst du Einstellungen verwalten!?").build());
-        inventory.setItem(16, new ItemBuilder(Material.PAPER).setDisplayName("§9Discord").setLore("§7Giveaways, Updates und mehr!").build());
-        inventory.setItem(13, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§9Statistiken").setLore("§7Klick hier um deine Statistiken zu sehen").build());
-
-    }
-
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -58,7 +50,10 @@ public class Profile implements Listener {
                         player.spigot().sendMessage(component);
                         player.closeInventory();
                         break;
-                    case PLAYER_HEAD: case REPEATER:
+                    case REPEATER:
+
+                        break;
+                    case PLAYER_HEAD:
                         player.sendMessage("todo");
                         break;
 
@@ -69,5 +64,21 @@ public class Profile implements Listener {
     }
 
 
+    public void openProfileGUI(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lProfile");
+        inventory.setItem(10, new ItemBuilder(Material.REPEATER).setDisplayName("§9Einstellungen").setLore("§7Hier kannst du Einstellungen verwalten!?").build());
+        inventory.setItem(16, new ItemBuilder(Material.PAPER).setDisplayName("§9Discord").setLore("§7Giveaways, Updates und mehr!").build());
+        inventory.setItem(13, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§9Statistiken").setLore("§7Klick hier um deine Statistiken zu sehen").build());
+        player.openInventory(inventory);
+    }
+
+    public void openSettingsGUI(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lSettings");
+        inventory.setItem(2, new ItemBuilder(Material.PAPER).setDisplayName("§aChat Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
+        inventory.setItem(3, new ItemBuilder(Material.BARRIER).setDisplayName("§aPrivatsphäre Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
+        inventory.setItem(5, new ItemBuilder(Material.NETHER_STAR).setDisplayName("§aLobby Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
+        inventory.setItem(5, new ItemBuilder(Material.COBWEB).setDisplayName("§aStatistik Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
+        player.openInventory(inventory);
+    }
 
 }

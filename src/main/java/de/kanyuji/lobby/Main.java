@@ -16,6 +16,7 @@ import de.kanyuji.lobby.utils.MySQLUtil;
 import de.kanyuji.lobby.utils.MySQL;
 import de.kanyuji.lobby.utils.VisibleHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -41,6 +42,8 @@ public class Main extends JavaPlugin {
         instance = this;
         register(Bukkit.getPluginManager());
         visiblehandler = new VisibleHandler();
+
+        System.out.println(Material.ALLIUM.isSolid());
     }
 
     @Override

@@ -34,7 +34,7 @@ public class BlockTrails implements Listener {
         }
         Material oldMaterial = block.getType();
         Material materialAbove = player.getLocation().getBlock().getType();
-        if(!oldMaterial.isSolid() || blockedBlocks.contains(materialAbove) || blockedBlocks.contains(oldMaterial) || materialAbove == Material.AIR && materialAbove == Material.CAVE_AIR) {
+        if(blockedBlocks.contains(oldMaterial) || !materialAbove.isAir() || oldMaterial.isAir()) { //|| blockedBlocks.contains(oldMaterial)
             return;
         }
         Material material = equippedTrail.get(player.getUniqueId());
@@ -56,11 +56,17 @@ public class BlockTrails implements Listener {
     }
 
     public static void run() {
+        blockedBlocks.add(Material.AIR);
+        blockedBlocks.add(Material.WATER);
+        blockedBlocks.add(Material.LAVA);
+        blockedBlocks.add(Material.RED_BANNER);
+        blockedBlocks.add(Material.CAVE_AIR);
+        blockedBlocks.add(Material.VOID_AIR);
         blockedBlocks.add(Material.GRASS);
         blockedBlocks.add(Material.TALL_GRASS);
         blockedBlocks.add(Material.CHEST);
         blockedBlocks.add(Material.TRAPPED_CHEST);
-
+        blockedBlocks.add(Material.HONEY_BLOCK);
 
 
         blockedBlocks.add(Material.ACACIA_STAIRS);
@@ -80,6 +86,7 @@ public class BlockTrails implements Listener {
         blockedBlocks.add(Material.QUARTZ_STAIRS);
         blockedBlocks.add(Material.SANDSTONE_STAIRS);
         blockedBlocks.add(Material.PRISMARINE_STAIRS);
+        blockedBlocks.add(Material.STONE_BRICK_STAIRS);
 
         blockedBlocks.add(Material.ACACIA_SIGN);
         blockedBlocks.add(Material.ACACIA_WALL_SIGN);
@@ -97,6 +104,15 @@ public class BlockTrails implements Listener {
         blockedBlocks.add(Material.SPRUCE_WALL_SIGN);
         blockedBlocks.add(Material.WARPED_SIGN);
         blockedBlocks.add(Material.WARPED_WALL_SIGN);
+
+        blockedBlocks.add(Material.POPPY);
+        blockedBlocks.add(Material.POTTED_POPPY);
+        blockedBlocks.add(Material.POTTED_WITHER_ROSE);
+        blockedBlocks.add(Material.WITHER_ROSE);
+        blockedBlocks.add(Material.POTTED_ACACIA_SAPLING);
+        blockedBlocks.add(Material.ACACIA_SAPLING);
+        blockedBlocks.add(Material.POTTED_ALLIUM);
+        blockedBlocks.add(Material.ALLIUM);
 
 
     }
