@@ -55,7 +55,7 @@ public class Inv implements Listener {
         switch (material) {
             case LIME_STAINED_GLASS:
                 //blockTrailInventory.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getPoints(player.getUniqueId()) + " Pixel").build());
-                player.openInventory(blockTrailInventory);
+                openBlockTrailInventory(player);
                 break;
             case NETHER_STAR:
 
@@ -87,16 +87,16 @@ public class Inv implements Listener {
         inventory.setItem(16, new ItemBuilder(Material.GOLDEN_BOOTS).setDisplayName("§eSpielzeuge").setDisplayName("§7Habe ein bisschen Spaß zwischendurch mit Minispielen").build());
     }
 
-    public static void setBlockTrailInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(null, 9*6, "Test");
+    public static void openBlockTrailInventory(Player player) {
+        Inventory inv = Bukkit.createInventory(null, 9*6, "§b§lBlock Trails");
 
-        blockTrailInventory.setItem(10, new ItemBuilder(Material.BARRIER).setDisplayName("§cNone").build());
-        blockTrailInventory.setItem(11, new ItemBuilder(Material.QUARTZ_BLOCK).setDisplayName("§7Quartz Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
-        blockTrailInventory.setItem(12, new ItemBuilder(Material.COAL_BLOCK).setDisplayName("§7Coal Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
-        blockTrailInventory.setItem(13, new ItemBuilder(Material.BRICKS).setDisplayName("§7Brick Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
-        blockTrailInventory.setItem(14, new ItemBuilder(Material.SNOW_BLOCK).setDisplayName("§7Snow Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
-        blockTrailInventory.setItem(15, new ItemBuilder(Material.NETHERRACK).setDisplayName("§7Netherrack Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
-        blockTrailInventory.setItem(16, new ItemBuilder(Material.REDSTONE_ORE).setDisplayName("§9Redstone Ore Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
+        inv.setItem(10, new ItemBuilder(Material.BARRIER).setDisplayName("§cNone").build());
+        inv.setItem(11, new ItemBuilder(Material.QUARTZ_BLOCK).setDisplayName("§7Quartz Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        inv.setItem(12, new ItemBuilder(Material.COAL_BLOCK).setDisplayName("§7Coal Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        inv.setItem(13, new ItemBuilder(Material.BRICKS).setDisplayName("§7Brick Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        inv.setItem(14, new ItemBuilder(Material.SNOW_BLOCK).setDisplayName("§7Snow Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        inv.setItem(15, new ItemBuilder(Material.NETHERRACK).setDisplayName("§7Netherrack Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §7Common", "").build());
+        inv.setItem(16, new ItemBuilder(Material.REDSTONE_ORE).setDisplayName("§9Redstone Ore Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
 
         inv.setItem(19, new ItemBuilder(Material.RED_STAINED_GLASS).setDisplayName("§9Red Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
         inv.setItem(20, new ItemBuilder(Material.BLUE_STAINED_GLASS).setDisplayName("§9Blue Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §9Rare", "").build());
