@@ -115,7 +115,7 @@ public class Inv implements Listener {
         inv.setItem(34, new ItemBuilder(Material.BEDROCK).setDisplayName("§4Bedrock Trail").setLore("§8Block Trail", "", "§aFür Admins und höhere Teammitglieder", "", "§aRarity: §4Special", "").build());
 
         inv.setItem(48, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
-        inv.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getPoints(player.getUniqueId()) + " Coins").build());
+        //inv.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getPoints(player.getUniqueId()) + " Coins").build());
         player.openInventory(inv);
     }
 

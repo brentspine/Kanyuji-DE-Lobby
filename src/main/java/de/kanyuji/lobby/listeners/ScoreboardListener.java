@@ -46,7 +46,7 @@ public class ScoreboardListener implements Listener {
                 "§6Coins",
                 "§7" + "debug", "",
                 "§eSpielzeit",
-                "§7" + "debug",
+                "§7" + "debug",s
                 "             ");
     }
 
