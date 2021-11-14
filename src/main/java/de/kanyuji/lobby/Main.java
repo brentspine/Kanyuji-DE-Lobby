@@ -42,8 +42,6 @@ public class Main extends JavaPlugin {
         instance = this;
         register(Bukkit.getPluginManager());
         visiblehandler = new VisibleHandler();
-
-        System.out.println(Material.ALLIUM.isSolid());
     }
 
     @Override
