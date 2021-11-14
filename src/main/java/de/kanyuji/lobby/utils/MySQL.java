@@ -13,7 +13,7 @@ public class MySQL {
     public static String port = "3306";
     public static String database = "kanyuji";
     public static String user = "root";
-    public static String password = "";
+    public static String password = "craftmine-01";
     public static Connection connection;
 
     public static void connect() {
