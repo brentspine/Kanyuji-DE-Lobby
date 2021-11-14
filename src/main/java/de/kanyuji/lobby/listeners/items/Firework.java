@@ -73,6 +73,10 @@ public class Firework implements Listener {
                     player.teleport(new LocationUtil(Main.getInstance(), "locs.TRYJUMP").getLocation());
                     player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
                     break;
+                case LAVA_BUCKET:
+                    player.teleport(new LocationUtil(Main.getInstance(), "locs.CHALLENGES").getLocation());
+                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                    break;
                 case BARRIER:
                     player.sendMessage(Main.PREFIX + "Dieser Platz ist noch nicht belegt.");
                     break;
