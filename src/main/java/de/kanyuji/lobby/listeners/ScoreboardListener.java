@@ -1,5 +1,6 @@
 package de.kanyuji.lobby.listeners;
 
+import de.brentspine.coinsystem.mysql.MySQLCoins;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.utils.MySQLUtil;
@@ -12,6 +13,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.swing.text.NumberFormatter;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -46,14 +49,15 @@ public class ScoreboardListener implements Listener {
                 "§6Coins",
                 "§7" + "debug", "",
                 "§eSpielzeit",
-                "§7" + "debug",s
+                "§7" + "debug",
                 "             ");
     }
 
 
     public static void updateCoins(UUID uuid) {
         coins.remove(uuid);
-        //coins.put(uuid, MySQLCoins.getPoints(uuid));
+        new NumberFormatter();
+        coins.put(uuid, MySQLCoins.getPoints(uuid));
     }
 
     public static void updatePlayTime(UUID uuid) {

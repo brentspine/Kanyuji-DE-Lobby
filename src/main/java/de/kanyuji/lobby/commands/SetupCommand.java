@@ -19,7 +19,6 @@ public class SetupCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        player.sendMessage("Test test 123");
         if(args.length <= 0) {
             player.sendMessage(Main.PREFIX + "Verwendung: /" + label + " [spawn | <GameMode>]");
             return true;
