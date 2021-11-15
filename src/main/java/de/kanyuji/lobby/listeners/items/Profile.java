@@ -60,6 +60,102 @@ public class Profile implements Listener {
                 }
                 event.setCancelled(true);
             }
+
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lSettings")) {
+                switch (event.getCurrentItem().getType()) {
+                    case PAPER:
+                        openChatSettingsGUI(player);
+                        break;
+                    case BARRIER:
+                        openPrivacySettingsGUI(player);
+                        break;
+                    case NETHER_STAR:
+                        openLobbySettingsGUI(player);
+                        break;
+                    case COBWEB:
+                        openStatisticSettingsGUI(player);
+                        break;
+                    case ORANGE_DYE:
+                        switch (event.getRawSlot()) {
+                            case 11:
+                                openChatSettingsGUI(player);
+                                break;
+                            case 12:
+                                openPrivacySettingsGUI(player);
+                                break;
+                            case 14:
+                                openLobbySettingsGUI(player);
+                                break;
+                            case 15:
+                                openStatisticSettingsGUI(player);
+                                break;
+                        }
+                        break;
+                    case FILLED_MAP:
+                        player.sendMessage("§4Todo"); //todo
+                        break;
+                    case RED_BED:
+                        player.sendMessage("§c§4Todo"); //todo
+                        break;
+                    case LIME_DYE:
+                        player.sendMessage("§a§4Todo"); //todo
+                        break;
+                    case ARROW:
+                        openProfileGUI(player);
+                        break;
+                }
+                event.setCancelled(true);
+            }
+
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lSettings - Chat")) {
+                switch (event.getCurrentItem().getType()) {
+                    case LIME_DYE:
+                        player.sendMessage("§a§4Todo"); //todo
+                        break;
+                    case ARROW:
+                        openProfileGUI(player);
+                        break;
+                }
+                event.setCancelled(true);
+            }
+
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lSettings - Privacy")) {
+                switch (event.getCurrentItem().getType()) {
+                    case LIME_DYE:
+                        player.sendMessage("§a§4Todo"); //todo
+                        break;
+                    case ARROW:
+                        openProfileGUI(player);
+                        break;
+                }
+                event.setCancelled(true);
+            }
+
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lSettings - Lobby")) {
+                switch (event.getCurrentItem().getType()) {
+                    case LIME_DYE:
+                        player.sendMessage("§a§4Todo"); //todo
+                        break;
+                    case ARROW:
+                        openProfileGUI(player);
+                        break;
+                }
+                event.setCancelled(true);
+            }
+
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lSettings - Statistics")) {
+                switch (event.getCurrentItem().getType()) {
+                    case LIME_DYE:
+                        player.sendMessage("§a§4Todo"); //todo
+                        break;
+                    case ARROW:
+                        openProfileGUI(player);
+                        break;
+                }
+                event.setCancelled(true);
+            }
+
+
         }
     }
 
@@ -86,6 +182,35 @@ public class Profile implements Listener {
         inventory.setItem(33, new ItemBuilder(Material.RED_BED).setDisplayName("§aAutomatische Warteschlange").setLore("§7Stellt ein, ob du nach einem Spiel automatisch zum nächsten weitergeleitet wirst").hideMetaTags(true).build());
         inventory.setItem(38, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
         inventory.setItem(42, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
+        inventory.setItem(49, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").hideMetaTags(true).build());
+        player.openInventory(inventory);
+    }
+
+    public void openChatSettingsGUI(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lSettings - Chat");
+        inventory.setItem(4, new ItemBuilder(Material.PAPER).setDisplayName("Todo").build());
+        inventory.setItem(49, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").hideMetaTags(true).build());
+        player.openInventory(inventory);
+    }
+
+    public void openPrivacySettingsGUI(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lSettings - Privacy");
+        inventory.setItem(4, new ItemBuilder(Material.PAPER).setDisplayName("Todo").build());
+        inventory.setItem(49, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").hideMetaTags(true).build());
+        player.openInventory(inventory);
+    }
+
+    public void openLobbySettingsGUI(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lSettings - Lobby");
+        inventory.setItem(4, new ItemBuilder(Material.PAPER).setDisplayName("Todo").build());
+        inventory.setItem(49, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").hideMetaTags(true).build());
+        player.openInventory(inventory);
+    }
+
+    public void openStatisticSettingsGUI(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lSettings - Statistics");
+        inventory.setItem(4, new ItemBuilder(Material.PAPER).setDisplayName("Todo").build());
+        inventory.setItem(49, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").hideMetaTags(true).build());
         player.openInventory(inventory);
     }
 

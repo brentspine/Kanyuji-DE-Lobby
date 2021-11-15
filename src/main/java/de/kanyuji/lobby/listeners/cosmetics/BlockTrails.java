@@ -59,6 +59,7 @@ public class BlockTrails implements Listener {
         blockedBlocks.add(Material.AIR);
         blockedBlocks.add(Material.WATER);
         blockedBlocks.add(Material.LAVA);
+        blockedBlocks.add(Material.VINE);
         blockedBlocks.add(Material.RED_BANNER);
         blockedBlocks.add(Material.CAVE_AIR);
         blockedBlocks.add(Material.VOID_AIR);
