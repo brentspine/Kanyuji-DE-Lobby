@@ -51,7 +51,7 @@ public class Profile implements Listener {
                         player.closeInventory();
                         break;
                     case REPEATER:
-
+                        openSettingsGUI(player);
                         break;
                     case PLAYER_HEAD:
                         player.sendMessage("todo");
@@ -77,7 +77,15 @@ public class Profile implements Listener {
         inventory.setItem(2, new ItemBuilder(Material.PAPER).setDisplayName("§aChat Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
         inventory.setItem(3, new ItemBuilder(Material.BARRIER).setDisplayName("§aPrivatsphäre Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
         inventory.setItem(5, new ItemBuilder(Material.NETHER_STAR).setDisplayName("§aLobby Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
-        inventory.setItem(5, new ItemBuilder(Material.COBWEB).setDisplayName("§aStatistik Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
+        inventory.setItem(6, new ItemBuilder(Material.COBWEB).setDisplayName("§aStatistik Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
+        inventory.setItem(11, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").hideMetaTags(true).build());
+        inventory.setItem(12, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").hideMetaTags(true).build());
+        inventory.setItem(14, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").hideMetaTags(true).build());
+        inventory.setItem(15, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").hideMetaTags(true).build());
+        inventory.setItem(29, new ItemBuilder(Material.FILLED_MAP).setDisplayName("§aUpdate Notifications").setLore("§7Stellt ein, ob du bei Updates eine Nachricht mit Informationen erhälst").hideMetaTags(true).build());
+        inventory.setItem(33, new ItemBuilder(Material.RED_BED).setDisplayName("§aAutomatische Warteschlange").setLore("§7Stellt ein, ob du nach einem Spiel automatisch zum nächsten weitergeleitet wirst").hideMetaTags(true).build());
+        inventory.setItem(42, new ItemBuilder(Material.GREEN_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
+        inventory.setItem(46, new ItemBuilder(Material.GREEN_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
         player.openInventory(inventory);
     }
 
