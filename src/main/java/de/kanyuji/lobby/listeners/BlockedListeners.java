@@ -69,8 +69,10 @@ public class BlockedListeners implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if(event.getAction() == Action.LEFT_CLICK_BLOCK && !event.getItem().getType().name().toLowerCase().contains("sign") && event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-            event.setCancelled(true);
+        if(event.getAction() == Action.LEFT_CLICK_BLOCK && event.getPlayer().getGameMode() != GameMode.CREATIVE) {
+            if(!event.getItem().getType().name().toLowerCase().contains("sign")) {
+                event.setCancelled(true);
+            }
         }
     }
 
