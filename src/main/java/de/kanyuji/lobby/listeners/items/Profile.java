@@ -21,13 +21,12 @@ public class Profile implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if(event.getItem() == null) return;
-            //if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
-                if(event.getItem().getType() == Material.PLAYER_HEAD) {
+            if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
+                if(event.getItem().getType() == Material.PLAYER_HEAD && event.getItem().getItemMeta().getDisplayName().contains("Profil")) {
                     openProfileGUI(event.getPlayer());
                     event.setCancelled(true);
                 }
-
-            //}
+            }
         }
     }
 
@@ -113,7 +112,7 @@ public class Profile implements Listener {
                         player.sendMessage("§a§4Todo"); //todo
                         break;
                     case ARROW:
-                        openProfileGUI(player);
+                        openSettingsGUI(player);
                         break;
                 }
                 event.setCancelled(true);
@@ -125,7 +124,7 @@ public class Profile implements Listener {
                         player.sendMessage("§a§4Todo"); //todo
                         break;
                     case ARROW:
-                        openProfileGUI(player);
+                        openSettingsGUI(player);
                         break;
                 }
                 event.setCancelled(true);
@@ -137,7 +136,7 @@ public class Profile implements Listener {
                         player.sendMessage("§a§4Todo"); //todo
                         break;
                     case ARROW:
-                        openProfileGUI(player);
+                        openSettingsGUI(player);
                         break;
                 }
                 event.setCancelled(true);
@@ -149,7 +148,7 @@ public class Profile implements Listener {
                         player.sendMessage("§a§4Todo"); //todo
                         break;
                     case ARROW:
-                        openProfileGUI(player);
+                        openSettingsGUI(player);
                         break;
                 }
                 event.setCancelled(true);

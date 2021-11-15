@@ -24,7 +24,7 @@ public class Firework implements Listener {
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if(event.getItem() == null) return;
             if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
-                if(event.getItem().getType() == Material.FIREWORK_ROCKET) {
+                if(event.getItem().getType() == Material.FIREWORK_ROCKET && event.getItem().getItemMeta().getDisplayName().contains("Teleporter")) {
                     event.getPlayer().openInventory(inventory);
                     event.setCancelled(true);
                 }
