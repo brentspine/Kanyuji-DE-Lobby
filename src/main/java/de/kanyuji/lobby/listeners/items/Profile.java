@@ -21,13 +21,13 @@ public class Profile implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if(event.getItem() == null) return;
-            if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
+            //if(event.getItem().hasItemMeta() && event.getItem().getItemMeta() != null) {
                 if(event.getItem().getType() == Material.PLAYER_HEAD) {
                     openProfileGUI(event.getPlayer());
                     event.setCancelled(true);
                 }
 
-            }
+            //}
         }
     }
 
@@ -73,7 +73,7 @@ public class Profile implements Listener {
     }
 
     public void openSettingsGUI(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lSettings");
+        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lSettings");
         inventory.setItem(2, new ItemBuilder(Material.PAPER).setDisplayName("§aChat Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
         inventory.setItem(3, new ItemBuilder(Material.BARRIER).setDisplayName("§aPrivatsphäre Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
         inventory.setItem(5, new ItemBuilder(Material.NETHER_STAR).setDisplayName("§aLobby Einstellungen").setLore("§7Klicke, um deine Einstellungen zu ändern").hideMetaTags(true).build());
@@ -84,8 +84,8 @@ public class Profile implements Listener {
         inventory.setItem(15, new ItemBuilder(Material.ORANGE_DYE).setDisplayName("§aKlicken zum öffnen").hideMetaTags(true).build());
         inventory.setItem(29, new ItemBuilder(Material.FILLED_MAP).setDisplayName("§aUpdate Notifications").setLore("§7Stellt ein, ob du bei Updates eine Nachricht mit Informationen erhälst").hideMetaTags(true).build());
         inventory.setItem(33, new ItemBuilder(Material.RED_BED).setDisplayName("§aAutomatische Warteschlange").setLore("§7Stellt ein, ob du nach einem Spiel automatisch zum nächsten weitergeleitet wirst").hideMetaTags(true).build());
-        inventory.setItem(42, new ItemBuilder(Material.GREEN_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
-        inventory.setItem(46, new ItemBuilder(Material.GREEN_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
+        inventory.setItem(38, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
+        inventory.setItem(42, new ItemBuilder(Material.LIME_DYE).setDisplayName("§aEnabled").hideMetaTags(true).build());
         player.openInventory(inventory);
     }
 
