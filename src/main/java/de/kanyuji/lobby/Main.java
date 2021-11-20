@@ -3,10 +3,7 @@ package de.kanyuji.lobby;
 import de.kanyuji.lobby.commands.DiscordCommand;
 import de.kanyuji.lobby.commands.SetupCommand;
 import de.kanyuji.lobby.commands.SpawnCommand;
-import de.kanyuji.lobby.listeners.BlockedListeners;
-import de.kanyuji.lobby.listeners.HideListener;
-import de.kanyuji.lobby.listeners.PlayerConnectionListener;
-import de.kanyuji.lobby.listeners.ScoreboardListener;
+import de.kanyuji.lobby.listeners.*;
 import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.listeners.items.Firework;
@@ -64,6 +61,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new HideListener(), this);
         pluginManager.registerEvents(new BlockTrails(), this);
         pluginManager.registerEvents(new Profile(), this);
+        pluginManager.registerEvents(new PlayerDoubleJumpListener(), this);
         getServer().getScheduler().runTaskTimer(this, () -> {
             for (FastBoard board : ScoreboardListener.boards.values()) {
                 ScoreboardListener.updateBoard(board);
@@ -73,6 +71,7 @@ public class Main extends JavaPlugin {
         Firework.setInventory();
         Inv.setInventory();
         BlockTrails.run();
+
     }
 
     public VisibleHandler getVisibleHandler() {

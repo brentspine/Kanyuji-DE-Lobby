@@ -1,6 +1,7 @@
 package de.kanyuji.lobby.listeners;
 
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -40,10 +41,7 @@ public class BlockedListeners implements Listener {
         }
     }
 
-    @EventHandler
-    public void onPlayerDamage(EntityDamageEvent event) {
-        event.setCancelled(true);
-    }
+
 
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
@@ -73,6 +71,13 @@ public class BlockedListeners implements Listener {
             if(!event.getItem().getType().name().toLowerCase().contains("sign")) {
                 event.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler
+    public void onDamage(EntityDamageEvent event) {
+        if(event.getEntity() instanceof Player) {
+            event.setCancelled(true);
         }
     }
 
