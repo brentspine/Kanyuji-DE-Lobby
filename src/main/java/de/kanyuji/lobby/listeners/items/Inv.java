@@ -74,6 +74,11 @@ public class Inv implements Listener {
             player.openInventory(inventory);
             return;
         }
+        if(material == Material.BARRIER) {
+            BlockTrails.setEquippedTrail(player.getUniqueId(), null);
+            player.sendMessage(Main.PREFIX + "Du hast deinen Trail §cunequipped");
+            return;
+        }
         if(player.hasPermission("system.blocktrails." + material.name())) {
             player.sendMessage(Main.PREFIX + "Du hast den §c" + material.name() + "§7 Trail ausgewählt");
             BlockTrails.setEquippedTrail(player.getUniqueId(), material);

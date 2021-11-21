@@ -51,8 +51,10 @@ public class BlockTrails implements Listener {
 
 
     public static void setEquippedTrail(UUID uuid, Material material) {
-        equippedTrail.remove(uuid);
-        equippedTrail.put(uuid, material);
+        if(material == null) {
+            equippedTrail.remove(uuid);
+        } else
+            equippedTrail.put(uuid, material);
     }
 
     public static void run() {
