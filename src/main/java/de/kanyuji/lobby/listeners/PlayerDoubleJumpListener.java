@@ -24,10 +24,10 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 public class PlayerDoubleJumpListener implements Listener {
 
     public static final Integer DOUBLE_JUMP_COOLDOWN_SECONDS = 5;
-    public static final Integer MULTIPLY_BY = 3;
+    public static final Float MULTIPLY_BY = 2f;
 
     Map<UUID, Long> cooldowns = new HashMap();
-    private Main plugin = (Main)Main.getPlugin(Main.class);
+    private Main plugin = Main.getInstance();
 
     public PlayerDoubleJumpListener() {
     }
