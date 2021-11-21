@@ -24,7 +24,7 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 public class PlayerDoubleJumpListener implements Listener {
 
     public static final Integer DOUBLE_JUMP_COOLDOWN_SECONDS = 5;
-    public static final Integer MULTIPLY_BY = 1;
+    public static final Integer MULTIPLY_BY = 3;
 
     Map<UUID, Long> cooldowns = new HashMap();
     private Main plugin = (Main)Main.getPlugin(Main.class);
@@ -112,11 +112,11 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onJump(PlayerToggleFlightEvent e) {
-        e.setCancelled(true);
         Player p = e.getPlayer();
         if (p.hasPermission("doublejump.use")) {
             if (p.getGameMode() != GameMode.CREATIVE) {
                 if (p.getGameMode() != GameMode.SPECTATOR) {
+                    e.setCancelled(true);
                     if (this.cooldowns.containsKey(p.getUniqueId()) && this.cooldowns.get(p.getUniqueId()) > System.currentTimeMillis()) {
                         long timeLeft = (this.cooldowns.get(p.getUniqueId()) - System.currentTimeMillis()) / 1000L;
                         p.setAllowFlight(false);
