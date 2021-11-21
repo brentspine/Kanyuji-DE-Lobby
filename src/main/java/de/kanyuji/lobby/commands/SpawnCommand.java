@@ -1,6 +1,7 @@
 package de.kanyuji.lobby.commands;
 
 import de.kanyuji.lobby.Main;
+import de.kanyuji.lobby.Settings;
 import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -18,7 +19,7 @@ public class SpawnCommand implements CommandExecutor {
         }
         Player player = (Player) sender;
         player.teleport(new LocationUtil(Main.getInstance(), "spawn").getLocation());
-        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+        player.playSound(player.getLocation(), Settings.TELEPORT_SOUND, 1, 1);
         return false;
     }
 
