@@ -75,6 +75,7 @@ public class Inv implements Listener {
             return;
         }
         if(material == Material.BARRIER) {
+            player.closeInventory();
             BlockTrails.setEquippedTrail(player.getUniqueId(), null);
             player.sendMessage(Main.PREFIX + "Du hast deinen Trail §cunequipped");
             return;
@@ -82,8 +83,10 @@ public class Inv implements Listener {
         if(player.hasPermission("system.blocktrails." + material.name())) {
             player.sendMessage(Main.PREFIX + "Du hast den §c" + material.name() + "§7 Trail ausgewählt");
             BlockTrails.setEquippedTrail(player.getUniqueId(), material);
-        } else
-            player.sendMessage(Main.PREFIX + "Du §cbesitzt §7diesen Blocktrail §cnicht");
+            return;
+        }
+        player.closeInventory();
+        player.sendMessage(Main.PREFIX + "Du §cbesitzt §7diesen Blocktrail §cnicht");
     }
 
     public static void setInventory() {
