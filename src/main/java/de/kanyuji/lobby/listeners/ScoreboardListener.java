@@ -1,6 +1,8 @@
 package de.kanyuji.lobby.listeners;
 
-import de.brentspine.coinsystem.mysql.MySQLCoins;
+import de.brentspine.kanyujiapi.KanyujiAPI;
+import de.brentspine.kanyujiapi.mysql.MySQLCoins;
+import de.brentspine.kanyujiapi.mysql.MySQLPlaytime;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.utils.MySQLUtil;
@@ -47,12 +49,11 @@ public class ScoreboardListener implements Listener {
                 "§fRang",
                 "§7Todo", "",
                 "§6Coins",
-                "§7" + "debug", "",
+                "§7" + MySQLCoins.getFormatedPoints(board.getPlayer().getUniqueId()), "",
                 "§eSpielzeit",
-                "§7" + "debug",
+                "§7" + MySQLPlaytime.getFormattedTime(board.getPlayer().getUniqueId()),
                 "             ");
     }
-
 
     public static void updateCoins(UUID uuid) {
         coins.remove(uuid);
