@@ -1,6 +1,5 @@
 package de.kanyuji.lobby.listeners.items;
 
-import de.brentspine.coinsystem.mysql.MySQLCoins;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.utils.ItemBuilder;

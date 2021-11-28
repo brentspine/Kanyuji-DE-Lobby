@@ -13,7 +13,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 
 public class Firework implements Listener {
 
@@ -41,47 +40,54 @@ public class Firework implements Listener {
             if(!(event.getCurrentItem().hasItemMeta())) return;
             if(!event.getView().getTitle().equalsIgnoreCase("§b§lTeleporter")) return;
             event.setCancelled(true);
-            switch (event.getCurrentItem().getType()) {
-                case FIRE_CHARGE:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case FIREWORK_ROCKET:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.EVENT").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case STICK:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.TTT").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case WATER_BUCKET:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.SURF").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case CRAFTING_TABLE:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.BINGO").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case CLAY_BALL:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.SWITCH").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case ELYTRA:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.ELYTRAWARS").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case DIAMOND_BOOTS:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.TRYJUMP").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case LAVA_BUCKET:
-                    player.teleport(new LocationUtil(Main.getInstance(), "locs.CHALLENGES").getLocation());
-                    player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
-                    break;
-                case BARRIER:
-                    player.sendMessage(Main.PREFIX + "Dieser Platz ist noch nicht belegt.");
-                    break;
-            }
+            try {
+                switch (event.getCurrentItem().getType()) {
+                    case FIRE_CHARGE:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case FIREWORK_ROCKET:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.EVENT").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case STICK:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.TTT").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case WATER_BUCKET:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.SURF").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case CRAFTING_TABLE:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.BINGO").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case CLAY_BALL:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.SWITCH").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case ELYTRA:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.ELYTRAWARS").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case DIAMOND_BOOTS:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.TRYJUMP").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case LAVA_BUCKET:
+                        player.teleport(new LocationUtil(Main.getInstance(), "locs.CHALLENGES").getLocation());
+                        player.playSound(event.getWhoClicked().getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+                        break;
+                    case BARRIER:
+                        player.sendMessage(Main.PREFIX + "Dieser Platz ist noch nicht belegt.");
+                        break;
+                }
+            } catch (Exception e) {
+                player.closeInventory();
+                player.sendMessage(Main.PREFIX + "§cInterner Fehler (unbekannte Position)");
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1f, 1f);
+            } //aa
+
         }
     }
 

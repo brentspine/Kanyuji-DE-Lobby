@@ -3,6 +3,7 @@ package de.kanyuji.lobby.listeners;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.utils.ItemBuilder;
 import de.kanyuji.lobby.utils.LocationUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,6 +18,12 @@ public class PlayerConnectionListener implements Listener {
     public void handlePlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.getInventory().clear();
+        try {
+            player.teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
+        } catch (Exception e) {
+            //player.sendMessage(Main.PREFIX + "§cInterner Fehler (unbekannte Position)");
+            Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "§4Fehlender Spawn!");
+        }
         player.teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
         player.setFoodLevel(20);
         player.setMaxHealth(6);
@@ -28,8 +35,9 @@ public class PlayerConnectionListener implements Listener {
         player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§b§lProfil").build());
         //nick tool wird vom nick plugin ins inventar gelegt || Command block zum starten lege ich später ins inventar!!!
         //todo join animation(lass mich das machen)
-        ScoreboardListener.updateCoins(player.getUniqueId());
-        ScoreboardListener.updatePlayTime(player.getUniqueId());
+
+        //ScoreboardListener.updateCoins(player.getUniqueId());
+        //ScoreboardListener.updatePlayTime(player.getUniqueId());
     }
 
     @EventHandler

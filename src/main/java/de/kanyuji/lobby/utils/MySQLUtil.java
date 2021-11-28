@@ -8,8 +8,6 @@ import java.util.UUID;
 
 public class MySQLUtil {
 
-
-
     public static boolean isUserExisting(UUID uuid) {
         //Bukkit.getConsoleSender().sendMessage(Main.PREFIX + "isUserExisting");
         try {

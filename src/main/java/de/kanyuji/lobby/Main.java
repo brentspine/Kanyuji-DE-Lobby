@@ -1,5 +1,7 @@
 package de.kanyuji.lobby;
 
+import de.brentspine.kanyujiapi.KanyujiAPI;
+import de.brentspine.kanyujiapi.mysql.MySQLPlaytime;
 import de.kanyuji.lobby.commands.DiscordCommand;
 import de.kanyuji.lobby.commands.SetupCommand;
 import de.kanyuji.lobby.commands.SpawnCommand;
@@ -34,8 +36,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
-        MySQL.connect();
+        KanyujiAPI.start();
         instance = this;
         register(Bukkit.getPluginManager());
         visiblehandler = new VisibleHandler();
@@ -43,7 +44,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        MySQL.disconnect();
+        //MySQL.disconnect();
     }
 
     public static Main getInstance() {

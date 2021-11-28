@@ -24,6 +24,7 @@ public class SetupCommand implements CommandExecutor {
             return true;
         } else {
             new LocationUtil(Main.getInstance(),  player.getLocation(), "locs." + args[0].toUpperCase()).saveLocation();
+            player.sendMessage(Main.PREFIX + "Du hast die Location für §c" + args[0] + "§7 gesetzt");
         }
 
         return true;
