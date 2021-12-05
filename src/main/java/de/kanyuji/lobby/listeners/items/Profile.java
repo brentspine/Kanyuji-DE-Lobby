@@ -1,5 +1,6 @@
 package de.kanyuji.lobby.listeners.items;
 
+import de.brentspine.kanyujiapi.mysql.stats.MySQLSurf;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.utils.ItemBuilder;
 import net.md_5.bungee.api.ChatColor;
@@ -13,6 +14,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+
+import java.util.UUID;
 
 public class Profile implements Listener {
 
@@ -53,11 +56,19 @@ public class Profile implements Listener {
                         openSettingsGUI(player);
                         break;
                     case PLAYER_HEAD:
-                        player.sendMessage("todo");
+                        openStatisticsGUI(player);
                         break;
 
                 }
                 event.setCancelled(true);
+            }
+
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lStatistics")) {
+                switch (event.getCurrentItem().getType()) {
+                    case ARROW:
+                        openSettingsGUI(player);
+                        break;
+                }
             }
 
             if(event.getView().getTitle().equalsIgnoreCase("§b§lSettings")) {
@@ -164,6 +175,30 @@ public class Profile implements Listener {
         inventory.setItem(10, new ItemBuilder(Material.REPEATER).setDisplayName("§9Einstellungen").setLore("§7Hier kannst du Einstellungen verwalten!?").build());
         inventory.setItem(16, new ItemBuilder(Material.PAPER).setDisplayName("§9Discord").setLore("§7Giveaways, Updates und mehr!").build());
         inventory.setItem(13, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§9Statistiken").setLore("§7Klick hier um deine Statistiken zu sehen").build());
+        player.openInventory(inventory);
+    }
+
+    public void openStatisticsGUI(Player player) {
+        UUID uuid = player.getUniqueId();
+        Inventory inventory = Bukkit.createInventory(null, 5*9, "§b§lStatistics");
+        inventory.setItem(10, new ItemBuilder(Material.STICK).setDisplayName("§4§lTTT").setLore("§4todo").build());
+        inventory.setItem(11, new ItemBuilder(Material.WATER_BUCKET).setDisplayName("§3§lSURF").setLore(
+                "§7Kills: §c" + MySQLSurf.getKills(uuid),
+                "§7Deaths: §c" + MySQLSurf.getDeaths(uuid),
+                "§7Points: §c" + MySQLSurf.getPoints(uuid)).build());
+        inventory.setItem(12, new ItemBuilder(Material.CRAFTING_TABLE).setDisplayName("§9§lBINGO").setLore("§4todo").build());
+        inventory.setItem(13, new ItemBuilder(Material.LAVA_BUCKET).setDisplayName("§2§lCHALLENGES").setLore("§4todo").build());
+        inventory.setItem(14, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§e§lEVENT").setLore("§4todo").build());
+        inventory.setItem(15, new ItemBuilder(Material.CLAY_BALL).setDisplayName("§c§lSWITCH").setLore("§4todo").build());
+        inventory.setItem(16, new ItemBuilder(Material.DIAMOND_BOOTS).setDisplayName("§b§lTRYJUMP").setLore("§4todo").build());
+        inventory.setItem(19, new ItemBuilder(Material.ELYTRA).setDisplayName("§a§lELYTRAWARS").setLore("§4todo").build());
+        inventory.setItem(20, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
+        inventory.setItem(21, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
+        inventory.setItem(22, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
+        inventory.setItem(23, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
+        inventory.setItem(24, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
+        inventory.setItem(25, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
+        inventory.setItem(40, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
         player.openInventory(inventory);
     }
 
