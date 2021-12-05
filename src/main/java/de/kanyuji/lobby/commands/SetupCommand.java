@@ -19,6 +19,10 @@ public class SetupCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
+        if(!player.hasPermission("lobby.setup")) {
+            player.sendMessage(Main.NOPERM);
+            return true;
+        }
         if(args.length <= 0) {
             player.sendMessage(Main.PREFIX + "Verwendung: /" + label + " [spawn | <GameMode>]");
             return true;
