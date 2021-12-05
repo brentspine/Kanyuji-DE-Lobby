@@ -1,8 +1,8 @@
 # Lobby
 In Arbeit
 
-# Permissions 
-/setup: lobby.setup
-Blocktrail: system.blocktrails. + material.name() 
+# Permissions <br>
+/setup: lobby.setup <br>
+Blocktrail: system.blocktrails. + material.name() <br>
 DoubleJump: doublejump.use
 
