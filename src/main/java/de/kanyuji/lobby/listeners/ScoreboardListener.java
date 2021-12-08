@@ -1,8 +1,8 @@
 package de.kanyuji.lobby.listeners;
 
 import de.brentspine.kanyujiapi.KanyujiAPI;
-import de.brentspine.kanyujiapi.mysql.MySQLCoins;
-import de.brentspine.kanyujiapi.mysql.MySQLPlaytime;
+import de.brentspine.kanyujiapi.mysql.data.MySQLCoins;
+import de.brentspine.kanyujiapi.mysql.data.MySQLPlaytime;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.fastboard.FastBoard;
 import de.kanyuji.lobby.utils.MySQLUtil;

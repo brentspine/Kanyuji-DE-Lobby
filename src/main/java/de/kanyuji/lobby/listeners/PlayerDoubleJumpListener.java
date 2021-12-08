@@ -37,7 +37,7 @@ public class PlayerDoubleJumpListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        if (p.hasPermission("doublejump.use")) {
+        if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() == GameMode.SURVIVAL) {
                 p.setAllowFlight(true);
             } else if (p.getGameMode() == GameMode.ADVENTURE) {
@@ -56,7 +56,7 @@ public class PlayerDoubleJumpListener implements Listener {
             p.setAllowFlight(true);
         }
 
-        if (p.hasPermission("doublejump.use")) {
+        if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() == GameMode.SURVIVAL) {
                 p.setAllowFlight(true);
             } else if (p.getGameMode() == GameMode.ADVENTURE) {
@@ -77,7 +77,7 @@ public class PlayerDoubleJumpListener implements Listener {
                 return;
             }
 
-            if (p.hasPermission("doublejump.use")) {
+            if (p.hasPermission("lobby.doublejump")) {
                 if (p.getGameMode() == GameMode.SURVIVAL) {
                     p.setAllowFlight(true);
                 } else if (p.getGameMode() == GameMode.ADVENTURE) {
@@ -96,7 +96,7 @@ public class PlayerDoubleJumpListener implements Listener {
             p.setAllowFlight(true);
         }
 
-        if (p.hasPermission("doublejump.use")) {
+        if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() == GameMode.SURVIVAL) {
                 p.setAllowFlight(true);
             } else if (p.getGameMode() == GameMode.ADVENTURE) {
@@ -115,7 +115,7 @@ public class PlayerDoubleJumpListener implements Listener {
     @EventHandler
     public void onJump(PlayerToggleFlightEvent e) {
         Player p = e.getPlayer();
-        if (p.hasPermission("doublejump.use")) {
+        if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() != GameMode.CREATIVE) {
                 if (p.getGameMode() != GameMode.SPECTATOR) {
                     e.setCancelled(true);

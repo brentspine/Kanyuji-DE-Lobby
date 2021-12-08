@@ -11,3 +11,5 @@ commands:
     description: Spawn
   discord:
     description: Discord
+  messagelater:
+    description: Message Later
