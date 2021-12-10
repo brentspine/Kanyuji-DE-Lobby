@@ -1,8 +1,10 @@
 package de.kanyuji.lobby.listeners.items;
 
+import de.brentspine.kanyujiapi.mysql.data.MySQLFriends;
 import de.brentspine.kanyujiapi.mysql.stats.MySQLSurf;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.utils.ItemBuilder;
+import de.kanyuji.lobby.utils.UUIDFetcher;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.Bukkit;
@@ -14,6 +16,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -43,14 +46,7 @@ public class Profile implements Listener {
             if(event.getView().getTitle().equalsIgnoreCase("§b§lProfile")) {
                 switch (event.getCurrentItem().getType()) {
                     case PAPER:
-                        BaseComponent[] component =
-                                new ComponentBuilder(Main.PREFIX).bold(true)
-                                        .append("Hier ").color(ChatColor.GRAY).event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://kanyuji.de/discord")).bold(true)
-                                        .append("geht es zum ").color(ChatColor.GRAY)
-                                        .append("Discord").color(ChatColor.RED).create();
-
-                        player.spigot().sendMessage(component);
-                        player.closeInventory();
+                        openFriendsGUI(player);
                         break;
                     case REPEATER:
                         openSettingsGUI(player);
@@ -173,8 +169,9 @@ public class Profile implements Listener {
     public void openProfileGUI(Player player) {
         Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lProfile");
         inventory.setItem(10, new ItemBuilder(Material.REPEATER).setDisplayName("§9Einstellungen").setLore("§7Hier kannst du Einstellungen verwalten!?").build());
-        inventory.setItem(16, new ItemBuilder(Material.PAPER).setDisplayName("§9Discord").setLore("§7Giveaways, Updates und mehr!").build());
-        inventory.setItem(13, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§9Statistiken").setLore("§7Klick hier um deine Statistiken zu sehen").build());
+        inventory.setItem(13, new ItemBuilder(Material.PAPER).setDisplayName("§9Statistiken").setLore("§7Klick hier um deine Statistiken zu sehen").build());
+        //inventory.setItem(16, new ItemBuilder(Material.PAPER).setDisplayName("§9Discord").setLore("§7Giveaways, Updates und mehr!").build());
+        inventory.setItem(16, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§9Freunde").setLore("§7Vernetze dich mit deinen Freunden, indem", " du sie als Freunde hinzufügst").build());
         player.openInventory(inventory);
     }
 
@@ -199,6 +196,24 @@ public class Profile implements Listener {
         inventory.setItem(24, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
         inventory.setItem(25, new ItemBuilder(Material.BARRIER).setDisplayName("§9Coming soon").build());
         inventory.setItem(40, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
+        player.openInventory(inventory);
+    }
+
+    public void openFriendsGUI(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lStatistics");
+        ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
+        for (int i = 0; i < 9; i++) {
+            inventory.setItem(i, grayPane); //0 - 8
+        }
+        inventory.setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setDisplayName("§eYour Friends").setSkullOwner(player.getUniqueId()).build());
+        Integer i = 9;
+        for (UUID current : MySQLFriends.getAllFriends(player.getUniqueId())) {
+            String name = UUIDFetcher.getNameWithOfflinePlayer(current);
+            inventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(current).setDisplayName("§e" + name).setLore("§cFriends since " + MySQLFriends.getFriendsSince(player.getUniqueId(), current), "§eRight-Click for options").build());
+        }
+        for (int j = 0; j < 9 ; j++) {
+            inventory.setItem(j + 46, grayPane);
+        }
         player.openInventory(inventory);
     }
 
