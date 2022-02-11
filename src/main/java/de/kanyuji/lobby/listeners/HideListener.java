@@ -28,6 +28,8 @@ public class HideListener implements Listener {
             if(event.getItem() == null) return;
             if(!event.getItem().hasItemMeta()) return;
             if(!cooldown.contains(player)) {
+                if(!event.getItem().hasItemMeta()) return;
+                if(!event.getItem().getItemMeta().getDisplayName().contains("Spieler")) return;
                 if(event.getItem().getType() == Material.LIME_DYE) {
                     player.getInventory().setItem(1, new ItemBuilder(Material.PURPLE_DYE).setDisplayName("§5Spieler §8» §7Nur VIP").build());
                     player.sendMessage(Main.PREFIX + "§dDu siehst nun jeden VIP");
@@ -71,7 +73,7 @@ public class HideListener implements Listener {
                     if(!Main.getInstance().getVisibleHandler().getHider().contains(player)) {
                         Main.getInstance().getVisibleHandler().getHider().add(player);
                     }
-                    player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20, 5));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 5, true, true, true));
                     player.playSound(player.getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, 1, 1);
                     cooldown.add(player);
                     Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {

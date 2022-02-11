@@ -1,5 +1,6 @@
 package de.kanyuji.lobby.listeners.items;
 
+import de.brentspine.kanyujiapi.commands.FriendCommand;
 import de.brentspine.kanyujiapi.mysql.data.MySQLFriends;
 import de.brentspine.kanyujiapi.mysql.stats.MySQLSurf;
 import de.kanyuji.lobby.Main;
@@ -9,14 +10,19 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.UUID;
 
@@ -46,23 +52,63 @@ public class Profile implements Listener {
             if(event.getView().getTitle().equalsIgnoreCase("§b§lProfile")) {
                 switch (event.getCurrentItem().getType()) {
                     case PAPER:
-                        openFriendsGUI(player);
+                        openStatisticsGUI(player);
                         break;
                     case REPEATER:
                         openSettingsGUI(player);
                         break;
                     case PLAYER_HEAD:
-                        openStatisticsGUI(player);
+                        openFriendsGUI(player);
                         break;
 
                 }
                 event.setCancelled(true);
             }
 
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lFriends")) {
+                switch (event.getCurrentItem().getType()) {
+                    case PLAYER_HEAD:
+                        if(event.getClick().isRightClick()) {
+                            if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§eAdd Player")) {
+                                openLobbySettingsGUI(player);
+                                return;
+                            }
+                            ItemStack itemStack = event.getCurrentItem();
+                            SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
+                            UUID target = skullMeta.getOwningPlayer().getUniqueId();
+                            openFriendDetailsGUI(player, target);
+                        }
+                        break;
+                    case ARROW:
+                        openProfileGUI(player);
+                        break;
+                }
+            }
+
+            if(event.getView().getTitle().equalsIgnoreCase("§b§lFriends - Details")) {
+                SkullMeta skullMeta = (SkullMeta) event.getView().getItem(4).getItemMeta();
+                UUID target = skullMeta.getOwningPlayer().getUniqueId();
+                switch (event.getCurrentItem().getType()) {
+                    case BARRIER:
+                        openFriendsGUI(player);
+                        player.sendMessage(FriendCommand.PREFIX + "Du hast §c" + UUIDFetcher.getNameWithOfflinePlayer(target) + "§7 entfernt");
+                        break;
+                    case FIREWORK_ROCKET:
+                        player.sendMessage("§4todo"); //todo
+                        break;
+                    case NOTE_BLOCK:
+                        player.sendMessage("§4§4todo"); //todo
+                        break;
+                    case ARROW:
+                        openFriendsGUI(player);
+                        break;
+                }
+            }
+
             if(event.getView().getTitle().equalsIgnoreCase("§b§lStatistics")) {
                 switch (event.getCurrentItem().getType()) {
                     case ARROW:
-                        openSettingsGUI(player);
+                        openProfileGUI(player);
                         break;
                 }
             }
@@ -171,7 +217,7 @@ public class Profile implements Listener {
         inventory.setItem(10, new ItemBuilder(Material.REPEATER).setDisplayName("§9Einstellungen").setLore("§7Hier kannst du Einstellungen verwalten!?").build());
         inventory.setItem(13, new ItemBuilder(Material.PAPER).setDisplayName("§9Statistiken").setLore("§7Klick hier um deine Statistiken zu sehen").build());
         //inventory.setItem(16, new ItemBuilder(Material.PAPER).setDisplayName("§9Discord").setLore("§7Giveaways, Updates und mehr!").build());
-        inventory.setItem(16, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§9Freunde").setLore("§7Vernetze dich mit deinen Freunden, indem", " du sie als Freunde hinzufügst").build());
+        inventory.setItem(16, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(player.getUniqueId()).setDisplayName("§9Freunde").setLore("§7Vernetze dich mit deinen Freunden, indem", "§7du sie als Freunde hinzufügst").build());
         player.openInventory(inventory);
     }
 
@@ -199,8 +245,12 @@ public class Profile implements Listener {
         player.openInventory(inventory);
     }
 
+
+
+
+
     public void openFriendsGUI(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lStatistics");
+        Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lFriends");
         ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
         for (int i = 0; i < 9; i++) {
             inventory.setItem(i, grayPane); //0 - 8
@@ -209,13 +259,36 @@ public class Profile implements Listener {
         Integer i = 9;
         for (UUID current : MySQLFriends.getAllFriends(player.getUniqueId())) {
             String name = UUIDFetcher.getNameWithOfflinePlayer(current);
-            inventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(current).setDisplayName("§e" + name).setLore("§cFriends since " + MySQLFriends.getFriendsSince(player.getUniqueId(), current), "§eRight-Click for options").build());
+            inventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(current).setDisplayName("§9" + name).setLore("§7Friends since " + MySQLFriends.getFriendsSince(player.getUniqueId(), current), " ", "§eRight-Click for options").build());
+            i++;
         }
         for (int j = 0; j < 9 ; j++) {
-            inventory.setItem(j + 46, grayPane);
+            inventory.setItem(j + 45, grayPane);
         }
+        inventory.setItem(45, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
+        inventory.setItem(49, new ItemBuilder(Material.PLAYER_HEAD).setDisplayName("§eAdd Player").setCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjA1NmJjMTI0NGZjZmY5OTM0NGYxMmFiYTQyYWMyM2ZlZTZlZjZlMzM1MWQyN2QyNzNjMTU3MjUzMWYifX19").build());
         player.openInventory(inventory);
     }
+
+
+    public void openFriendDetailsGUI(Player player, UUID details) {
+        String detailsName = UUIDFetcher.getNameWithOfflinePlayer(details);
+        Inventory inventory = Bukkit.createInventory(null, 3*9, "§b§lFriends - Details");
+        ItemStack grayPane = new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayName("§c").build();
+        for (int i = 0; i < 10; i++) {
+            inventory.setItem(i, grayPane); //0 - 9
+        }
+        inventory.setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(details).setDisplayName("§e" + detailsName).setLore("§7Friends since " + MySQLFriends.getFriendsSince(player.getUniqueId(), details)).build());
+        inventory.setItem(11, new ItemBuilder(Material.BARRIER).setDisplayName("§cRemove").setLore("§7Remove " + detailsName + " as a friend").build());
+        inventory.setItem(13, new ItemBuilder(Material.FIREWORK_ROCKET).setDisplayName("§9Party Invite").setLore("§7Send " + detailsName + " a party invite").build());
+        inventory.setItem(15, new ItemBuilder(Material.NOTE_BLOCK).setDisplayName("§5Boop").setLore("§7Boop " + detailsName).build());
+        for (int i = 17; i < 27; i++) {
+            inventory.setItem(i, grayPane);
+        }
+        inventory.setItem(18, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
+        player.openInventory(inventory);
+    }
+
 
     public void openSettingsGUI(Player player) {
         Inventory inventory = Bukkit.createInventory(null, 6*9, "§b§lSettings");
@@ -261,6 +334,14 @@ public class Profile implements Listener {
         inventory.setItem(4, new ItemBuilder(Material.PAPER).setDisplayName("Todo").build());
         inventory.setItem(49, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").hideMetaTags(true).build());
         player.openInventory(inventory);
+    }
+
+
+    public void openAddFriendInventory(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, InventoryType.ANVIL, "§b§lFriends - Add Friend");
+        player.sendMessage("Try");
+        player.openInventory(inventory);
+        player.sendMessage("Done");
     }
 
 }

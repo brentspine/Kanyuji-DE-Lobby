@@ -43,6 +43,7 @@ public class ScoreboardListener implements Listener {
             board.delete();
         }
     }
+
     public static void updateBoard(FastBoard board) {
         board.updateLines(
                 "",
@@ -66,17 +67,5 @@ public class ScoreboardListener implements Listener {
         playTime.put(uuid, MySQLUtil.getFormattedTime(uuid));
     }
 
-
-    //private static void executeEveryMinute() {
-    //   new BukkitRunnable() {
-    //        @Override
-    //        public void run() {
-    //            for(Player current : Bukkit.getOnlinePlayers()) {
-    //                updatePlayTime(current.getUniqueId());
-    //                updateCoins(current.getUniqueId());
-    //            }
-    //        }
-    //    }.runTaskTimer(Main.getInstance(), 20*30, 20*30);
-    //}
 
 }

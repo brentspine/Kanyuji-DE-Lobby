@@ -1,5 +1,6 @@
 package de.kanyuji.lobby.listeners.items;
 
+import de.brentspine.kanyujiapi.mysql.data.MySQLCoins;
 import de.kanyuji.lobby.Main;
 import de.kanyuji.lobby.listeners.cosmetics.BlockTrails;
 import de.kanyuji.lobby.utils.ItemBuilder;
@@ -114,15 +115,15 @@ public class Inv implements Listener {
         inv.setItem(25, new ItemBuilder(Material.BLACK_STAINED_GLASS).setDisplayName("§5Black Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic", "").build());
 
         inv.setItem(28, new ItemBuilder(Material.DARK_PRISMARINE).setDisplayName("§5Dark Prismarine Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §5Epic", "").build());
-        inv.setItem(29, new ItemBuilder(Material.PRISMARINE_BRICKS).setDisplayName("§9Prismarine Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §6Legendary", "").build());
-        inv.setItem(30, new ItemBuilder(Material.LAPIS_BLOCK).setDisplayName("§9Lapis Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §6Legendary", "").build());
-        inv.setItem(31, new ItemBuilder(Material.OBSIDIAN).setDisplayName("§9Obisdian Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §6Legendary", "").build());
-        inv.setItem(32, new ItemBuilder(Material.SEA_LANTERN).setDisplayName("§9Sea Lantern Trail").setLore("§8Block Trail", "", "§aGesperrte Belohnung", "", "§aRarity: §6Legendary", "").build());
+        inv.setItem(29, new ItemBuilder(Material.PRISMARINE_BRICKS).setDisplayName("§6Prismarine Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §6Legendary", "").build());
+        inv.setItem(30, new ItemBuilder(Material.LAPIS_BLOCK).setDisplayName("§6Lapis Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §6Legendary", "").build());
+        inv.setItem(31, new ItemBuilder(Material.OBSIDIAN).setDisplayName("§6Obsidian Trail").setLore("§8Block Trail", "", "§aKann in Kisten gefunden werden", "", "§aRarity: §6Legendary", "").build());
+        inv.setItem(32, new ItemBuilder(Material.SEA_LANTERN).setDisplayName("§6Sea Lantern Trail").setLore("§8Block Trail", "", "§aGesperrte Belohnung", "", "§aRarity: §6Legendary", "").build());
         inv.setItem(33, new ItemBuilder(Material.DIAMOND_ORE).setDisplayName("§4White Trail").setLore("§8Block Trail", "", "§aKann von Admins vergeben werden", "", "§aRarity: §4Special", "").build());
         inv.setItem(34, new ItemBuilder(Material.BEDROCK).setDisplayName("§4Bedrock Trail").setLore("§8Block Trail", "", "§aFür Admins und höhere Teammitglieder", "", "§aRarity: §4Special", "").build());
 
         inv.setItem(48, new ItemBuilder(Material.ARROW).setDisplayName("§7Zurück").build());
-        //inv.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getPoints(player.getUniqueId()) + " Coins").build());
+        inv.setItem(49, new ItemBuilder(Material.EMERALD).setDisplayName("§6" + MySQLCoins.getFormatedPoints(player.getUniqueId()) + " Coins").build());
         player.openInventory(inv);
     }
 

@@ -56,6 +56,7 @@ public class MessageLaterCommand implements CommandExecutor, Listener {
                 Player t = (Player) target;
                 t.sendMessage(Main.PREFIX + "§2§lYou got a message from §a§l" + player.getName());
                 t.sendMessage(Main.PREFIX + message);
+                player.sendMessage(Main.PREFIX + "Da hast §c" + target.getName() + "§7 eine Nachricht gesendet ");
                 return true;
             }
         }

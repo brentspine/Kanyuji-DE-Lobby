@@ -1,8 +1,10 @@
 name: Lobby
 version: 1.0.0
-author: LvkasDev & Brentspine for Kanyuji.de
+author: Brentspine & LvkasDev for Kanyuji.de
 api-version: 1.16
 main: de.kanyuji.lobby.Main
+depend:
+  - api
 
 commands:
   setup:
@@ -13,3 +15,6 @@ commands:
     description: Discord
   messagelater:
     description: Message Later
+  lobbytest:
+    description: Lobby Test
+    permission: lobby.debug

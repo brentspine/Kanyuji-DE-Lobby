@@ -17,6 +17,9 @@ public class Dice {
 
     public Dice() { }
 
+    public static Integer generateNumberBetween(Integer min, Integer max) {
+        return (int) (Math.random()*(max-min+1)+min);
+    }
 
     public Integer roll() {
         if(min == null || max == null) {
@@ -25,7 +28,7 @@ public class Dice {
         if(min > max) {
             throw new IllegalArgumentException("Min can't be higher than the max value");
         }
-        result = (int) (Math.random()*(max-min+1)+min); // -- Magie passiert hier --
+        result = (int) (Math.random()*(max-min+1)+min);
         return result;
     }
 
@@ -46,5 +49,4 @@ public class Dice {
         this.max = max;
         return this;
     }
-
 }

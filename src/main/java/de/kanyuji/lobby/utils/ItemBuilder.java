@@ -1,16 +1,19 @@
 package de.kanyuji.lobby.utils;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.inventory.meta.*;
+import org.bukkit.potion.PotionEffect;
 
 public class ItemBuilder {
 
@@ -166,6 +169,49 @@ public class ItemBuilder {
             im.removeItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DYE, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_POTION_EFFECTS, ItemFlag.HIDE_UNBREAKABLE);
         is.setItemMeta(im);
         return this;
+    }
+
+    public ItemBuilder setCustomSkull(String url) {
+
+        if (url.isEmpty()) return this;
+
+        SkullMeta skullMeta = (SkullMeta) is.getItemMeta();
+        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+
+        profile.getProperties().put("textures", new Property("textures", url));
+
+        try {
+            Method mtd = skullMeta.getClass().getDeclaredMethod("setProfile", GameProfile.class);
+            mtd.setAccessible(true);
+            mtd.invoke(skullMeta, profile);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+
+        is.setItemMeta(skullMeta);
+        return this;
+    }
+
+    public ItemBuilder setPotionEffect(PotionEffect potionEffect) {
+        try {
+            PotionMeta im = (PotionMeta) is.getItemMeta();
+            im.addCustomEffect(potionEffect, true);
+            is.setItemMeta(im);
+            return this;
+        } catch (ClassCastException e) {
+            return this;
+        }
+    }
+
+    public ItemBuilder setArrowColor(Color color) {
+        try {
+            PotionMeta im = (PotionMeta) is.getItemMeta();
+            im.setColor(color);
+            is.setItemMeta(im);
+            return this;
+        } catch (ClassCastException e) {
+            return this;
+        }
     }
 
     public ItemStack build(){

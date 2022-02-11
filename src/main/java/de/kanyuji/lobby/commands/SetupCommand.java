@@ -1,6 +1,7 @@
 package de.kanyuji.lobby.commands;
 
 import de.kanyuji.lobby.Main;
+import de.kanyuji.lobby.rewardchests.RewardChestSetup;
 import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -11,6 +12,12 @@ import org.bukkit.entity.Player;
 public class SetupCommand implements CommandExecutor {
 
     // /setup [spawn]
+
+    private Main plugin;
+
+    public SetupCommand(Main plugin) {
+        this.plugin = plugin;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -26,10 +33,14 @@ public class SetupCommand implements CommandExecutor {
         if(args.length <= 0) {
             player.sendMessage(Main.PREFIX + "Verwendung: /" + label + " [spawn | <GameMode>]");
             return true;
-        } else {
-            new LocationUtil(Main.getInstance(),  player.getLocation(), "locs." + args[0].toUpperCase()).saveLocation();
-            player.sendMessage(Main.PREFIX + "Du hast die Location für §c" + args[0] + "§7 gesetzt");
         }
+        if(args[0].equalsIgnoreCase("rewards")) {
+            new RewardChestSetup(plugin, player);
+            return true;
+        }
+        new LocationUtil(Main.getInstance(),  player.getLocation(), "locs." + args[0].toUpperCase()).saveLocation();
+        player.sendMessage(Main.PREFIX + "Du hast die Location für §c" + args[0] + "§7 gesetzt");
+
 
         return true;
     }

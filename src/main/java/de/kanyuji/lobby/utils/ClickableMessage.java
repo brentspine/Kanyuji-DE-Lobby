@@ -1,6 +1,5 @@
 package de.kanyuji.lobby.utils;
 
-import jdk.javadoc.internal.doclets.formats.html.Contents;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.entity.Player;
