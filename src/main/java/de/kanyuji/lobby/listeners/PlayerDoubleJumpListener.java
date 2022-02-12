@@ -37,7 +37,9 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
+
         Player p = e.getPlayer();
+        if (p.isOp())return;
         if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() == GameMode.SURVIVAL||p.getGameMode()==GameMode.ADVENTURE) {
                 p.setAllowFlight(true);
@@ -50,7 +52,9 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onGameModeChange(PlayerGameModeChangeEvent e) {
+
         Player p = e.getPlayer();
+        if (p.isOp())return;
         if (p.getGameMode() == GameMode.CREATIVE) {
             p.setAllowFlight(true);
         }
@@ -66,7 +70,9 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
+
         Player p = e.getPlayer();
+        if (p.isOp())return;
         if (p.getGameMode() == GameMode.CREATIVE) {
             p.setAllowFlight(true);
         }
@@ -91,6 +97,7 @@ public class PlayerDoubleJumpListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         Player p = e.getEntity();
+        if (p.isOp())return;
         if (p.getGameMode() == GameMode.CREATIVE) {
             p.setAllowFlight(true);
         }
@@ -104,6 +111,7 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onFall(EntityDamageEvent e) {
+        if (e.getEntity().isOp())return;
         if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
             e.getEntity().teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
         }
