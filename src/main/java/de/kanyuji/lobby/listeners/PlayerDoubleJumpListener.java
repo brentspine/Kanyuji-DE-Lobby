@@ -22,7 +22,7 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 
 public class PlayerDoubleJumpListener implements Listener {
 
-    public static final Integer DOUBLE_JUMP_COOLDOWN_SECONDS = 5;
+    public static final Float DOUBLE_JUMP_COOLDOWN_SECONDS = 2.5f;
     public static final Integer MULTIPLY_BY = 1;
 
     Map<UUID, Long> cooldowns = new HashMap();
@@ -113,20 +113,26 @@ public class PlayerDoubleJumpListener implements Listener {
     public void onJump(PlayerToggleFlightEvent e) {
         e.setCancelled(true);
         Player p = e.getPlayer();
-        if (p.hasPermission("lobby.doublejump")) {
+        if(p.hasPermission("lobby.fly") || p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR) {
+            p.setFlying(e.isFlying());
+            return;
+        }
+        p.setFlying(false);
+        if(p.hasPermission("lobby.doublejump")) {
+            if (this.cooldowns.containsKey(p.getUniqueId()) && this.cooldowns.get(p.getUniqueId()) > System.currentTimeMillis()) {
+                p.sendMessage(Main.PREFIX + "§cDoublejump is on cooldown");
+            } else {
+                this.cooldowns.put(p.getUniqueId(), System.currentTimeMillis() + (long)(DOUBLE_JUMP_COOLDOWN_SECONDS * 1000));
+                p.setVelocity(p.getPlayer().getLocation().getDirection().multiply(MULTIPLY_BY).setY(1));
+
+                p.playSound(p.getLocation(), Sound.ENTITY_GHAST_SHOOT, 2.0F, 1.0F);
+                p.getWorld().playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 0, 20);
+            }
+        }
+        /*if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() != GameMode.CREATIVE) {
                 if (p.getGameMode() != GameMode.SPECTATOR) {
-                    if (this.cooldowns.containsKey(p.getUniqueId()) && this.cooldowns.get(p.getUniqueId()) > System.currentTimeMillis()) {
-                        long timeLeft = (this.cooldowns.get(p.getUniqueId()) - System.currentTimeMillis()) / 1000L;
-                        p.setAllowFlight(false);
-                        e.setCancelled(true);
-                    } else {
-                        this.cooldowns.put(p.getUniqueId(), System.currentTimeMillis() + (long)(DOUBLE_JUMP_COOLDOWN_SECONDS * 1000));
-                        p.setVelocity(p.getPlayer().getLocation().getDirection().multiply(MULTIPLY_BY).setY(1));
 
-                        p.playSound(p.getLocation(), Sound.ENTITY_GHAST_SHOOT, 2.0F, 1.0F);
-                        p.getWorld().playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 0, 20);
-                    }
                 }
             }
         } else {
@@ -134,7 +140,7 @@ public class PlayerDoubleJumpListener implements Listener {
             if (b.getType().equals(Material.AIR)) {
                 //p.sendMessage(Logger.color(Config.getCustomConfig2().getString("Prefix") + Config.getCustomConfig2().getString("NoPerms")));
             }
-        }
+        }*/
     }
 
 }
