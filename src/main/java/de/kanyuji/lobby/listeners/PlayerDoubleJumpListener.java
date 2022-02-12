@@ -115,6 +115,7 @@ public class PlayerDoubleJumpListener implements Listener {
     @EventHandler
     public void onJump(PlayerToggleFlightEvent e) {
         Player p = e.getPlayer();
+        if (p.hasPermission("lobby.fly"))return;
         if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() != GameMode.CREATIVE) {
                 if (p.getGameMode() != GameMode.SPECTATOR) {
