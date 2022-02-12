@@ -21,40 +21,43 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
                 "1 -> creative \n" +
                 "2 -> adventure \n" +
                 "3 -> spectator \n";
-        if (!(sender instanceof Player player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage("You are not a Player");
             return false;
         }
+        Player player = (Player) sender;
         switch (args[0].toLowerCase(Locale.ROOT)) {
-            case "0", "survival" -> {
+            case "0": case "survival":
                 if (player.getGameMode() == GameMode.SURVIVAL) {
                     break;
                 }
                 player.setGameMode(GameMode.SURVIVAL);
                 player.sendMessage("» " + ChatColor.GRAY + "Survival");
-            }
-            case "1", "creative" -> {
+                break;
+            case "1": case "creative":
                 if (player.getGameMode() == GameMode.CREATIVE) {
                     break;
                 }
                 player.setGameMode(GameMode.CREATIVE);
                 player.sendMessage("» " + ChatColor.GRAY + "Creative");
-            }
-            case "2", "adventure" -> {
+                break;
+            case "2": case "adventure":
                 if (player.getGameMode() == GameMode.ADVENTURE) {
                     break;
                 }
                 player.setGameMode(GameMode.ADVENTURE);
                 player.sendMessage("» " + ChatColor.GRAY + "Adventure");
-            }
-            case "3", "spectator" -> {
+                break;
+            case "3": case "spectator":
                 if (player.getGameMode() == GameMode.SPECTATOR) {
                     break;
                 }
                 player.setGameMode(GameMode.SPECTATOR);
                 player.sendMessage("» " + ChatColor.GRAY + "Spectator");
-            }
-            default -> player.sendMessage(Usage);
+                break;
+            default:
+                player.sendMessage(Usage);
+                break;
         }
         return false;
     }
