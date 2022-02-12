@@ -19,4 +19,6 @@ commands:
     description: Lobby Test
     permission: lobby.debug
   gamemode:
+    description: Gamemode
     aliases: gm
+    permission: lobby.gamemode

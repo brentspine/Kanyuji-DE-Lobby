@@ -14,7 +14,7 @@ import java.util.Locale;
 public class GameModeCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String Usage = ChatColor.RED + "Wrong Usage \n" +
+        String usage = ChatColor.RED + "Wrong Usage \n" +
                 ChatColor.WHITE + ChatColor.BOLD +
                 "Use: \n" +
                 "0 -> survival \n" +
@@ -26,6 +26,10 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
             return false;
         }
         Player player = (Player) sender;
+        if(args.length <= 0) {
+            player.sendMessage(usage);
+            return true;
+        }
         switch (args[0].toLowerCase(Locale.ROOT)) {
             case "0": case "survival":
                 if (player.getGameMode() == GameMode.SURVIVAL) {
@@ -56,7 +60,7 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
                 player.sendMessage("» " + ChatColor.GRAY + "Spectator");
                 break;
             default:
-                player.sendMessage(Usage);
+                player.sendMessage(usage);
                 break;
         }
         return false;
