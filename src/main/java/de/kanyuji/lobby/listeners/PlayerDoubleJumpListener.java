@@ -107,6 +107,7 @@ public class PlayerDoubleJumpListener implements Listener {
         if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
             e.getEntity().teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
         }
+        //
         if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
             e.setCancelled(true);
         }
