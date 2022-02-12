@@ -4,12 +4,8 @@ import de.kanyuji.lobby.Main;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import de.kanyuji.lobby.Settings;
-import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -26,26 +22,22 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 
 public class PlayerDoubleJumpListener implements Listener {
 
-    public static final Integer DOUBLE_JUMP_COOLDOWN_SECONDS = 3;
-    public static final Float MULTIPLY_BY = 2f;
+    public static final Integer DOUBLE_JUMP_COOLDOWN_SECONDS = 5;
+    public static final Integer MULTIPLY_BY = 1;
 
     Map<UUID, Long> cooldowns = new HashMap();
-    private Main plugin = Main.getInstance();
+    private Main plugin = (Main)Main.getPlugin(Main.class);
 
     public PlayerDoubleJumpListener() {
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-
         Player p = e.getPlayer();
-        if (p.hasPermission("lobby.fly")){
-            p.setAllowFlight(true);
-            p.setFlying(true);
-            return;
-        }
-        if (p.hasPermission("lobby.doublejump")) {
-            if (p.getGameMode() == GameMode.SURVIVAL||p.getGameMode()==GameMode.ADVENTURE) {
+        if (p.hasPermission("lobby.doublejump") || p.hasPermission("lobby.fly")) {
+            if (p.getGameMode() == GameMode.SURVIVAL) {
+                p.setAllowFlight(true);
+            } else if (p.getGameMode() == GameMode.ADVENTURE) {
                 p.setAllowFlight(true);
             } else {
                 p.setAllowFlight(false);
@@ -56,13 +48,7 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onGameModeChange(PlayerGameModeChangeEvent e) {
-
         Player p = e.getPlayer();
-        if (p.hasPermission("lobby.fly")){
-            p.setAllowFlight(true);
-            p.setFlying(true);
-            return;
-        }
         if (p.getGameMode() == GameMode.CREATIVE) {
             p.setAllowFlight(true);
         }
@@ -78,13 +64,7 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
-
         Player p = e.getPlayer();
-        if (p.hasPermission("lobby.fly")){
-            p.setAllowFlight(true);
-            p.setFlying(true);
-            return;
-        }
         if (p.getGameMode() == GameMode.CREATIVE) {
             p.setAllowFlight(true);
         }
@@ -109,56 +89,43 @@ public class PlayerDoubleJumpListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         Player p = e.getEntity();
-        if (p.hasPermission("lobby.fly")){
-            p.setAllowFlight(true);
-            p.setFlying(true);
-            return;
-        }
         if (p.getGameMode() == GameMode.CREATIVE) {
             p.setAllowFlight(true);
         }
 
         if (p.hasPermission("lobby.doublejump")) {
-            if (p.getGameMode() == GameMode.SURVIVAL||p.getGameMode() == GameMode.ADVENTURE) {
+            if (p.getGameMode() == GameMode.SURVIVAL) {
+                p.setAllowFlight(true);
+            } else if (p.getGameMode() == GameMode.ADVENTURE) {
                 p.setAllowFlight(true);
             }
         }
     }
 
-
     @EventHandler
     public void onFall(EntityDamageEvent e) {
-        if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
-            e.getEntity().teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
-        }
         if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
             e.setCancelled(true);
         }
     }
 
-
     @EventHandler
     public void onJump(PlayerToggleFlightEvent e) {
+        e.setCancelled(true);
         Player p = e.getPlayer();
-        if (p.hasPermission("lobby.fly")){
-            p.setAllowFlight(true);
-            p.setFlying(true);
-            return;
-        }
         if (p.hasPermission("lobby.doublejump")) {
             if (p.getGameMode() != GameMode.CREATIVE) {
                 if (p.getGameMode() != GameMode.SPECTATOR) {
-                    e.setCancelled(true);
                     if (this.cooldowns.containsKey(p.getUniqueId()) && this.cooldowns.get(p.getUniqueId()) > System.currentTimeMillis()) {
                         long timeLeft = (this.cooldowns.get(p.getUniqueId()) - System.currentTimeMillis()) / 1000L;
                         p.setAllowFlight(false);
                         e.setCancelled(true);
                     } else {
-                        this.cooldowns.put(p.getUniqueId(), System.currentTimeMillis() + (long)(Settings.DOUBLE_JUMP_COOLDOWN_SECONDS * 1000));
-                        p.setVelocity(p.getPlayer().getLocation().getDirection().multiply(Settings.DOUBLE_JUMP_MULTIPLY_BY).setY(1));
+                        this.cooldowns.put(p.getUniqueId(), System.currentTimeMillis() + (long)(DOUBLE_JUMP_COOLDOWN_SECONDS * 1000));
+                        p.setVelocity(p.getPlayer().getLocation().getDirection().multiply(MULTIPLY_BY).setY(1));
 
-                        p.playSound(p.getLocation(), Settings.DOUBLE_JUMP_BOOST_SOUND, 2.0F, 1.0F);
-                        p.getWorld().playEffect(p.getLocation(), Settings.DOUBLE_JUMP_BOOST_EFFECT, 0, 20);
+                        p.playSound(p.getLocation(), Sound.ENTITY_GHAST_SHOOT, 2.0F, 1.0F);
+                        p.getWorld().playEffect(p.getLocation(), Effect.ENDER_SIGNAL, 0, 20);
                     }
                 }
             }

@@ -79,6 +79,6 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
                 l2.add(s);
             }
         }
-        return list;
+        return l2;
     }
 }
