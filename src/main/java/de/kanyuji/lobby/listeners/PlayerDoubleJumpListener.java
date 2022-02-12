@@ -125,6 +125,7 @@ public class PlayerDoubleJumpListener implements Listener {
         }
     }
 
+
     @EventHandler
     public void onFall(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
