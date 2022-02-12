@@ -111,6 +111,7 @@ public class PlayerDoubleJumpListener implements Listener {
             e.setCancelled(true);
         }
     }
+    //
 
     @EventHandler
     public void onJump(PlayerToggleFlightEvent e) {
