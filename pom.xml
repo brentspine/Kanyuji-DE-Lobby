@@ -63,6 +63,14 @@
                     </relocations>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -151,7 +159,7 @@
         <dependency>
             <groupId>de.brentspine</groupId>
             <artifactId>kanyuji-api</artifactId>
-            <version>1.0</version>
+            <version>1.1-SNAPSHOT</version>
         </dependency>
 
         <!-- Caused by: java.lang.ClassNotFoundException: org.apache.commons.rng.UniformRandomProvider

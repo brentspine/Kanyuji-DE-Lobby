@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import de.kanyuji.lobby.Settings;
+import de.kanyuji.lobby.utils.LocationUtil;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -38,9 +39,7 @@ public class PlayerDoubleJumpListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         if (p.hasPermission("lobby.doublejump")) {
-            if (p.getGameMode() == GameMode.SURVIVAL) {
-                p.setAllowFlight(true);
-            } else if (p.getGameMode() == GameMode.ADVENTURE) {
+            if (p.getGameMode() == GameMode.SURVIVAL||p.getGameMode()==GameMode.ADVENTURE) {
                 p.setAllowFlight(true);
             } else {
                 p.setAllowFlight(false);
@@ -97,9 +96,7 @@ public class PlayerDoubleJumpListener implements Listener {
         }
 
         if (p.hasPermission("lobby.doublejump")) {
-            if (p.getGameMode() == GameMode.SURVIVAL) {
-                p.setAllowFlight(true);
-            } else if (p.getGameMode() == GameMode.ADVENTURE) {
+            if (p.getGameMode() == GameMode.SURVIVAL||p.getGameMode() == GameMode.ADVENTURE) {
                 p.setAllowFlight(true);
             }
         }
@@ -107,6 +104,9 @@ public class PlayerDoubleJumpListener implements Listener {
 
     @EventHandler
     public void onFall(EntityDamageEvent e) {
+        if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
+            e.getEntity().teleport(new LocationUtil(Main.getInstance(), "locs.SPAWN").getLocation());
+        }
         if (e.getEntity() instanceof Player && e.getCause().equals(DamageCause.FALL)) {
             e.setCancelled(true);
         }

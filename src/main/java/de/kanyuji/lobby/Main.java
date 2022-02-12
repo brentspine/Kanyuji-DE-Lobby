@@ -57,6 +57,7 @@ public class Main extends JavaPlugin {
         getCommand("discord").setExecutor(new DiscordCommand());
         getCommand("messagelater").setExecutor(messageLaterCommand);
         getCommand("lobbytest").setExecutor(new LobbyTestCommand());
+        getCommand("gamemode").setExecutor(new GameModeCommand());
         pluginManager.registerEvents(new PlayerConnectionListener(), this);
         pluginManager.registerEvents(new BlockedListeners().run(), this);
         pluginManager.registerEvents(new ScoreboardListener(), this);
