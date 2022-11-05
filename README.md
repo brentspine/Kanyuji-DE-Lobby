@@ -57,6 +57,8 @@ The server gained some traction with other gamemodes that might be reused on oth
    + Opens up a menu from where you can select different submenus like
    + <a href="#friendpage-image">Friendpage</a>
    + <a href="#stats-image">Stats</a>
+ + Player Hider (Dye)
+   + Select which players are shown (All, VIP, none)
 
  <h3>Cosmetics and Economy</h3>
  
