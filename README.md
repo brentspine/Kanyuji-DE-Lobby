@@ -120,7 +120,7 @@ For this plugin to function you need the <a href="https://github.com/brentspine/
      <version>1.1-SNAPSHOT</version>
  </dependency>
  ```
-Have a look at the <a href="https://github.com/brentspine/Kanyuji-DE-API/README.md">README.md</a> file in the repository on further instructions how the MySQL tables are set up.
+Have a look at the <a href="https://github.com/brentspine/Kanyuji-DE-API#readme">README.md</a> file in the repository on further instructions how the MySQL tables are set up.
  
 <h3>Disclaimer</h3>
 This plugin was made with little expertise and was a programming project by me to learn more about Java and SQL in a fun way. The project is not fully developed, but should be bug free. The code is far from clean and doesn't have the best performance, but if you want to start your a new minecraft server and don't want to spend time on building a simple lobby system this should do the trick, since it also should be a solid foundation together with the API project to build more. 
