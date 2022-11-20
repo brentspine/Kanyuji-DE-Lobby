@@ -19,13 +19,13 @@ The server gained some traction with other gamemodes that might be reused on oth
    + Teleports the executing player to spawn, which is setup with `/setup spawn`
  + <a href="#coins-image">Coins</a> (API)
    + For normal players it displays all coins
-   + Players with the `lobby.coins` (idk act.) can modify the coins amount of any player
+   + Players with the `coins.<action>` can modify the coins amount of any player
      + Set, Add, remove, reset, check
      + No matter what you do don't look at the code it is not mine
  + Playtime (API)
    + Every minute playtime is added to all players online (By the API)
    + For normal players it displays their playtime in a readable string
-   + Players with the `api.playtime` (idk too) can modify the playtime of any player
+   + Players with the `playtime.<action>` (idk too) can modify the playtime of any player
      + set, add, remove, reset, check, (pause)
    + Players get flagged as AFK when not having moved for 1 minute
 
@@ -51,7 +51,7 @@ The server gained some traction with other gamemodes that might be reused on oth
    + Opens up a menu, from which you can teleport to different gamemode NPCs. Locations are set with the <a href="#setup">setup command</a>
  + Inventory (Chest)
    + Opens up a menu where you can see all your owned items
-   + 3 Possible items to pick from
+   + 3 Possible categories to pick from
    + Only BlockTrails where implemented at the time development ended
  + Profile (Player Head)
    + Opens up a menu from where you can select different submenus like
