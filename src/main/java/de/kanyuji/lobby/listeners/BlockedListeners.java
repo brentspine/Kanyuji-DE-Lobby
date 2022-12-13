@@ -14,6 +14,10 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+/**
+ Posted by Brentspine on github.com
+ Utility file
+*/
 public class BlockedListeners implements Listener {
 
     private boolean running = false;
